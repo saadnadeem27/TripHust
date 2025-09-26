@@ -22,8 +22,6 @@ import '../modules/journal/bindings/journal_binding.dart';
 import '../modules/journal/views/travel_journal_view.dart';
 import 'app_routes.dart';
 
-part 'app_routes.dart';
-
 class AppPages {
   AppPages._();
 

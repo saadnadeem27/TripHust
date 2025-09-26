@@ -24,7 +24,7 @@ class LoginView extends GetView<AuthController> {
             child: Column(
               children: [
                 const SizedBox(height: 40),
-                
+
                 // Header
                 Column(
                   children: [
@@ -49,9 +49,9 @@ class LoginView extends GetView<AuthController> {
                         color: Colors.white,
                       ),
                     ),
-                    
+
                     const SizedBox(height: 20),
-                    
+
                     Text(
                       'Welcome Back',
                       style: GoogleFonts.poppins(
@@ -60,9 +60,9 @@ class LoginView extends GetView<AuthController> {
                         color: Colors.white,
                       ),
                     ),
-                    
+
                     const SizedBox(height: 8),
-                    
+
                     Text(
                       'Sign in to continue your journey',
                       style: GoogleFonts.poppins(
@@ -72,9 +72,9 @@ class LoginView extends GetView<AuthController> {
                     ),
                   ],
                 ),
-                
+
                 const SizedBox(height: 40),
-                
+
                 // Login Form
                 GlassmorphicContainer(
                   padding: const EdgeInsets.all(24),
@@ -110,9 +110,9 @@ class LoginView extends GetView<AuthController> {
                             ),
                           ),
                         ),
-                        
+
                         const SizedBox(height: 20),
-                        
+
                         // Password Field
                         Obx(() => TextFormField(
                               controller: controller.passwordController,
@@ -127,7 +127,8 @@ class LoginView extends GetView<AuthController> {
                                   color: Colors.white70,
                                 ),
                                 suffixIcon: IconButton(
-                                  onPressed: controller.togglePasswordVisibility,
+                                  onPressed:
+                                      controller.togglePasswordVisibility,
                                   icon: Icon(
                                     controller.isPasswordHidden.value
                                         ? Icons.visibility_off
@@ -150,9 +151,9 @@ class LoginView extends GetView<AuthController> {
                                 ),
                               ),
                             )),
-                        
+
                         const SizedBox(height: 16),
-                        
+
                         // Remember Me & Forgot Password
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -195,9 +196,9 @@ class LoginView extends GetView<AuthController> {
                             ),
                           ],
                         ),
-                        
+
                         const SizedBox(height: 30),
-                        
+
                         // Login Button
                         Obx(() => GradientButton(
                               text: 'Sign In',
@@ -209,9 +210,9 @@ class LoginView extends GetView<AuthController> {
                     ),
                   ),
                 ),
-                
+
                 const SizedBox(height: 30),
-                
+
                 // Divider
                 Row(
                   children: [
@@ -239,9 +240,9 @@ class LoginView extends GetView<AuthController> {
                     ),
                   ],
                 ),
-                
+
                 const SizedBox(height: 30),
-                
+
                 // Social Login Buttons
                 Row(
                   children: [
@@ -298,9 +299,9 @@ class LoginView extends GetView<AuthController> {
                     ),
                   ],
                 ),
-                
+
                 const SizedBox(height: 30),
-                
+
                 // Sign Up Link
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -325,7 +326,7 @@ class LoginView extends GetView<AuthController> {
                     ),
                   ],
                 ),
-                
+
                 const SizedBox(height: 20),
               ],
             ),

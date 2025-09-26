@@ -41,7 +41,8 @@ class SplashView extends GetView<SplashController> {
                                 gradient: AppTheme.primaryGradient,
                                 boxShadow: [
                                   BoxShadow(
-                                    color: AppTheme.primaryColor.withOpacity(0.3),
+                                    color:
+                                        AppTheme.primaryColor.withOpacity(0.3),
                                     blurRadius: 30,
                                     spreadRadius: 10,
                                   ),
@@ -57,9 +58,9 @@ class SplashView extends GetView<SplashController> {
                         );
                       },
                     ),
-                    
+
                     const SizedBox(height: 30),
-                    
+
                     // App Name
                     TweenAnimationBuilder<double>(
                       duration: const Duration(seconds: 1, milliseconds: 500),
@@ -70,8 +71,8 @@ class SplashView extends GetView<SplashController> {
                           child: Opacity(
                             opacity: value,
                             child: ShaderMask(
-                              shaderCallback: (bounds) => AppTheme.primaryGradient
-                                  .createShader(bounds),
+                              shaderCallback: (bounds) =>
+                                  AppTheme.primaryGradient.createShader(bounds),
                               child: Text(
                                 'TripHust',
                                 style: GoogleFonts.poppins(
@@ -86,9 +87,9 @@ class SplashView extends GetView<SplashController> {
                         );
                       },
                     ),
-                    
+
                     const SizedBox(height: 16),
-                    
+
                     // Tagline
                     TweenAnimationBuilder<double>(
                       duration: const Duration(seconds: 2),
@@ -110,7 +111,7 @@ class SplashView extends GetView<SplashController> {
                   ],
                 ),
               ),
-              
+
               // Loading Indicator
               Padding(
                 padding: const EdgeInsets.only(bottom: 50),
@@ -122,7 +123,7 @@ class SplashView extends GetView<SplashController> {
                       builder: (context, value, child) {
                         return Opacity(
                           opacity: value,
-                          child: Container(
+                          child: SizedBox(
                             width: 50,
                             height: 50,
                             child: CircularProgressIndicator(
@@ -135,9 +136,7 @@ class SplashView extends GetView<SplashController> {
                         );
                       },
                     ),
-                    
                     const SizedBox(height: 20),
-                    
                     Text(
                       'Loading amazing experiences...',
                       style: GoogleFonts.poppins(

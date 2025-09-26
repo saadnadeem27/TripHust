@@ -22,12 +22,12 @@ class ExploreController extends GetxController {
 
   void loadDestinations() {
     isLoading.value = true;
-    
+
     // Load dummy data
     allDestinations.value = DummyData.destinations;
     filteredDestinations.value = DummyData.destinations;
     categories.value = DummyData.categories;
-    
+
     isLoading.value = false;
   }
 
@@ -43,24 +43,30 @@ class ExploreController extends GetxController {
 
   void _filterDestinations() {
     List<Destination> filtered = allDestinations;
-    
+
     // Filter by category
     if (selectedCategory.value != 'All') {
       filtered = filtered
           .where((dest) => dest.tags.contains(selectedCategory.value))
           .toList();
     }
-    
+
     // Filter by search query
     if (searchQuery.value.isNotEmpty) {
       filtered = filtered
           .where((dest) =>
-              dest.name.toLowerCase().contains(searchQuery.value.toLowerCase()) ||
-              dest.city.toLowerCase().contains(searchQuery.value.toLowerCase()) ||
-              dest.country.toLowerCase().contains(searchQuery.value.toLowerCase()))
+              dest.name
+                  .toLowerCase()
+                  .contains(searchQuery.value.toLowerCase()) ||
+              dest.city
+                  .toLowerCase()
+                  .contains(searchQuery.value.toLowerCase()) ||
+              dest.country
+                  .toLowerCase()
+                  .contains(searchQuery.value.toLowerCase()))
           .toList();
     }
-    
+
     filteredDestinations.value = filtered;
   }
 
@@ -127,7 +133,7 @@ class ExploreController extends GetxController {
       );
       _filterDestinations();
     }
-    
+
     Get.snackbar(
       destination.isFavorite ? 'Removed from Favorites' : 'Added to Favorites',
       destination.name,

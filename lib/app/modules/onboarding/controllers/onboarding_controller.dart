@@ -9,18 +9,24 @@ class OnboardingController extends GetxController {
   final List<Map<String, String>> onboardingData = [
     {
       'title': 'Discover Amazing Places',
-      'description': 'Explore the world\'s most beautiful destinations with our curated travel guides and recommendations.',
-      'image': 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800',
+      'description':
+          'Explore the world\'s most beautiful destinations with our curated travel guides and recommendations.',
+      'image':
+          'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800',
     },
     {
       'title': 'Smart Trip Planning',
-      'description': 'AI-powered itinerary builder creates perfect trips based on your preferences and budget.',
-      'image': 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
+      'description':
+          'AI-powered itinerary builder creates perfect trips based on your preferences and budget.',
+      'image':
+          'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
     },
     {
       'title': 'Augmented Reality Guide',
-      'description': 'Point your phone at landmarks to get instant information and historical insights.',
-      'image': 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800',
+      'description':
+          'Point your phone at landmarks to get instant information and historical insights.',
+      'image':
+          'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800',
     },
   ];
 

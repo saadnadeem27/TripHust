@@ -7,26 +7,27 @@ class ProfileController extends GetxController {
   final RxString userEmail = 'john.traveler@triphust.com'.obs;
   final RxString userPhone = '+1 234 567 8900'.obs;
   final RxString userLocation = 'New York, USA'.obs;
-  final RxString profileImage = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400'.obs;
-  
+  final RxString profileImage =
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400'.obs;
+
   // User stats
   final RxInt totalTrips = 12.obs;
   final RxInt totalCountries = 8.obs;
   final RxInt totalCities = 25.obs;
   final RxInt totalPhotos = 156.obs;
-  
+
   // User preferences
   final RxBool isDarkMode = true.obs;
   final RxBool notificationsEnabled = true.obs;
   final RxBool locationEnabled = true.obs;
   final RxString currency = 'USD'.obs;
   final RxString language = 'English'.obs;
-  
+
   // Membership info
   final RxString membershipType = 'Premium'.obs;
   final RxString membershipExpiry = 'Dec 2024'.obs;
   final RxInt loyaltyPoints = 2450.obs;
-  
+
   // Recent activities
   final RxList<Map<String, dynamic>> recentActivities = <Map<String, dynamic>>[
     {
@@ -118,7 +119,8 @@ class ProfileController extends GetxController {
     );
   }
 
-  Widget _buildBottomSheetItem(String title, IconData icon, VoidCallback onTap) {
+  Widget _buildBottomSheetItem(
+      String title, IconData icon, VoidCallback onTap) {
     return ListTile(
       leading: Icon(icon, color: Colors.white),
       title: Text(
@@ -227,7 +229,9 @@ class ProfileController extends GetxController {
     notificationsEnabled.toggle();
     Get.snackbar(
       'Notifications',
-      notificationsEnabled.value ? 'Notifications enabled' : 'Notifications disabled',
+      notificationsEnabled.value
+          ? 'Notifications enabled'
+          : 'Notifications disabled',
     );
   }
 
@@ -235,7 +239,9 @@ class ProfileController extends GetxController {
     locationEnabled.toggle();
     Get.snackbar(
       'Location',
-      locationEnabled.value ? 'Location services enabled' : 'Location services disabled',
+      locationEnabled.value
+          ? 'Location services enabled'
+          : 'Location services disabled',
     );
   }
 
@@ -272,18 +278,18 @@ class ProfileController extends GetxController {
               ),
             ),
             const SizedBox(height: 16),
-            ...['USD', 'EUR', 'GBP', 'JPY', 'AUD'].map((curr) =>
-                ListTile(
-                  title: Text(curr, style: const TextStyle(color: Colors.white)),
-                  trailing: currency.value == curr
-                      ? const Icon(Icons.check, color: Colors.green)
-                      : null,
-                  onTap: () {
-                    currency.value = curr;
-                    Get.back();
-                  },
-                ),
-            ).toList(),
+            ...['USD', 'EUR', 'GBP', 'JPY', 'AUD'].map(
+              (curr) => ListTile(
+                title: Text(curr, style: const TextStyle(color: Colors.white)),
+                trailing: currency.value == curr
+                    ? const Icon(Icons.check, color: Colors.green)
+                    : null,
+                onTap: () {
+                  currency.value = curr;
+                  Get.back();
+                },
+              ),
+            ),
           ],
         ),
       ),
@@ -323,18 +329,18 @@ class ProfileController extends GetxController {
               ),
             ),
             const SizedBox(height: 16),
-            ...['English', 'Spanish', 'French', 'German', 'Japanese'].map((lang) =>
-                ListTile(
-                  title: Text(lang, style: const TextStyle(color: Colors.white)),
-                  trailing: language.value == lang
-                      ? const Icon(Icons.check, color: Colors.green)
-                      : null,
-                  onTap: () {
-                    language.value = lang;
-                    Get.back();
-                  },
-                ),
-            ).toList(),
+            ...['English', 'Spanish', 'French', 'German', 'Japanese'].map(
+              (lang) => ListTile(
+                title: Text(lang, style: const TextStyle(color: Colors.white)),
+                trailing: language.value == lang
+                    ? const Icon(Icons.check, color: Colors.green)
+                    : null,
+                onTap: () {
+                  language.value = lang;
+                  Get.back();
+                },
+              ),
+            ),
           ],
         ),
       ),

@@ -17,8 +17,10 @@ class DummyData {
     Destination(
       id: '1',
       name: 'Santorini',
-      description: 'Beautiful Greek island with stunning sunsets and white architecture.',
-      imageUrl: 'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=800',
+      description:
+          'Beautiful Greek island with stunning sunsets and white architecture.',
+      imageUrl:
+          'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=800',
       gallery: [
         'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=800',
         'https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?w=800',
@@ -38,8 +40,10 @@ class DummyData {
     Destination(
       id: '2',
       name: 'Bali',
-      description: 'Tropical paradise with temples, rice terraces, and beautiful beaches.',
-      imageUrl: 'https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?w=800',
+      description:
+          'Tropical paradise with temples, rice terraces, and beautiful beaches.',
+      imageUrl:
+          'https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?w=800',
       gallery: [
         'https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?w=800',
         'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800',
@@ -59,8 +63,10 @@ class DummyData {
     Destination(
       id: '3',
       name: 'Swiss Alps',
-      description: 'Majestic mountains with pristine lakes and charming villages.',
-      imageUrl: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',
+      description:
+          'Majestic mountains with pristine lakes and charming villages.',
+      imageUrl:
+          'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',
       gallery: [
         'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',
         'https://images.unsplash.com/photo-1551524164-6cf2ac11723d?w=800',
@@ -80,8 +86,10 @@ class DummyData {
     Destination(
       id: '4',
       name: 'Tokyo',
-      description: 'Vibrant metropolis blending traditional and modern culture.',
-      imageUrl: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800',
+      description:
+          'Vibrant metropolis blending traditional and modern culture.',
+      imageUrl:
+          'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800',
       gallery: [
         'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800',
         'https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=800',
@@ -102,7 +110,8 @@ class DummyData {
       id: '5',
       name: 'Safari Kenya',
       description: 'Amazing wildlife experience in the heart of Africa.',
-      imageUrl: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800',
+      imageUrl:
+          'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800',
       gallery: [
         'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800',
         'https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=800',
@@ -123,7 +132,8 @@ class DummyData {
       id: '6',
       name: 'Maldives',
       description: 'Crystal clear waters and overwater bungalows in paradise.',
-      imageUrl: 'https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=800',
+      imageUrl:
+          'https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=800',
       gallery: [
         'https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=800',
         'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800',
@@ -147,7 +157,8 @@ class DummyData {
       id: '1',
       title: 'European Grand Tour',
       description: 'Visit 5 countries in 14 days covering the best of Europe.',
-      imageUrl: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800',
+      imageUrl:
+          'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800',
       gallery: [],
       price: 2800,
       duration: 14,
@@ -166,12 +177,19 @@ class DummyData {
       id: '2',
       title: 'Southeast Asia Adventure',
       description: 'Explore Thailand, Vietnam, and Cambodia in 21 days.',
-      imageUrl: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',
+      imageUrl:
+          'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',
       gallery: [],
       price: 1800,
       duration: 21,
       destinations: ['Bangkok', 'Ho Chi Minh', 'Siem Reap', 'Phuket'],
-      includes: ['Hotels', 'All Meals', 'Transportation', 'Guide', 'Activities'],
+      includes: [
+        'Hotels',
+        'All Meals',
+        'Transportation',
+        'Guide',
+        'Activities'
+      ],
       excludes: ['Flights', 'Travel Insurance', 'Tips'],
       rating: 4.8,
       reviewsCount: 680,
@@ -185,7 +203,8 @@ class DummyData {
       id: '3',
       title: 'African Safari Experience',
       description: 'Wildlife safari across Kenya and Tanzania.',
-      imageUrl: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800',
+      imageUrl:
+          'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800',
       gallery: [],
       price: 4200,
       duration: 10,

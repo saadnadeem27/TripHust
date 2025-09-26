@@ -24,7 +24,7 @@ class RegisterView extends GetView<AuthController> {
             child: Column(
               children: [
                 const SizedBox(height: 20),
-                
+
                 // Header
                 Column(
                   children: [
@@ -64,9 +64,9 @@ class RegisterView extends GetView<AuthController> {
                         const SizedBox(width: 40),
                       ],
                     ),
-                    
+
                     const SizedBox(height: 30),
-                    
+
                     // Logo
                     Container(
                       width: 80,
@@ -88,9 +88,9 @@ class RegisterView extends GetView<AuthController> {
                         color: Colors.white,
                       ),
                     ),
-                    
+
                     const SizedBox(height: 20),
-                    
+
                     Text(
                       'Join TripHust',
                       style: GoogleFonts.poppins(
@@ -99,9 +99,9 @@ class RegisterView extends GetView<AuthController> {
                         color: Colors.white,
                       ),
                     ),
-                    
+
                     const SizedBox(height: 8),
-                    
+
                     Text(
                       'Start your adventure today',
                       style: GoogleFonts.poppins(
@@ -111,9 +111,9 @@ class RegisterView extends GetView<AuthController> {
                     ),
                   ],
                 ),
-                
+
                 const SizedBox(height: 30),
-                
+
                 // Registration Form
                 GlassmorphicContainer(
                   padding: const EdgeInsets.all(24),
@@ -149,9 +149,9 @@ class RegisterView extends GetView<AuthController> {
                             ),
                           ),
                         ),
-                        
+
                         const SizedBox(height: 20),
-                        
+
                         // Email Field
                         TextFormField(
                           controller: controller.emailController,
@@ -180,9 +180,9 @@ class RegisterView extends GetView<AuthController> {
                             ),
                           ),
                         ),
-                        
+
                         const SizedBox(height: 20),
-                        
+
                         // Password Field
                         Obx(() => TextFormField(
                               controller: controller.passwordController,
@@ -197,7 +197,8 @@ class RegisterView extends GetView<AuthController> {
                                   color: Colors.white70,
                                 ),
                                 suffixIcon: IconButton(
-                                  onPressed: controller.togglePasswordVisibility,
+                                  onPressed:
+                                      controller.togglePasswordVisibility,
                                   icon: Icon(
                                     controller.isPasswordHidden.value
                                         ? Icons.visibility_off
@@ -220,14 +221,15 @@ class RegisterView extends GetView<AuthController> {
                                 ),
                               ),
                             )),
-                        
+
                         const SizedBox(height: 20),
-                        
+
                         // Confirm Password Field
                         Obx(() => TextFormField(
                               controller: controller.confirmPasswordController,
                               validator: controller.validatePassword,
-                              obscureText: controller.isConfirmPasswordHidden.value,
+                              obscureText:
+                                  controller.isConfirmPasswordHidden.value,
                               style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
                                 labelText: 'Confirm Password',
@@ -237,7 +239,8 @@ class RegisterView extends GetView<AuthController> {
                                   color: Colors.white70,
                                 ),
                                 suffixIcon: IconButton(
-                                  onPressed: controller.toggleConfirmPasswordVisibility,
+                                  onPressed: controller
+                                      .toggleConfirmPasswordVisibility,
                                   icon: Icon(
                                     controller.isConfirmPasswordHidden.value
                                         ? Icons.visibility_off
@@ -260,9 +263,9 @@ class RegisterView extends GetView<AuthController> {
                                 ),
                               ),
                             )),
-                        
+
                         const SizedBox(height: 30),
-                        
+
                         // Register Button
                         Obx(() => GradientButton(
                               text: 'Create Account',
@@ -278,9 +281,9 @@ class RegisterView extends GetView<AuthController> {
                     ),
                   ),
                 ),
-                
+
                 const SizedBox(height: 30),
-                
+
                 // Divider
                 Row(
                   children: [
@@ -308,9 +311,9 @@ class RegisterView extends GetView<AuthController> {
                     ),
                   ],
                 ),
-                
+
                 const SizedBox(height: 30),
-                
+
                 // Social Registration Buttons
                 Row(
                   children: [
@@ -367,9 +370,9 @@ class RegisterView extends GetView<AuthController> {
                     ),
                   ],
                 ),
-                
+
                 const SizedBox(height: 30),
-                
+
                 // Sign In Link
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -394,7 +397,7 @@ class RegisterView extends GetView<AuthController> {
                     ),
                   ],
                 ),
-                
+
                 const SizedBox(height: 20),
               ],
             ),

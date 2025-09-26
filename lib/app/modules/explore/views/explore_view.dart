@@ -27,17 +27,17 @@ class ExploreView extends GetView<ExploreController> {
               SliverToBoxAdapter(
                 child: _buildCustomAppBar(),
               ),
-              
+
               // Search Section
               SliverToBoxAdapter(
                 child: _buildSearchSection(),
               ),
-              
+
               // Filter Chips
               SliverToBoxAdapter(
                 child: _buildFilterChips(),
               ),
-              
+
               // Destinations Grid
               Obx(() => controller.isLoading.value
                   ? const SliverToBoxAdapter(
@@ -51,7 +51,8 @@ class ExploreView extends GetView<ExploreController> {
                   : SliverPadding(
                       padding: const EdgeInsets.all(20),
                       sliver: SliverGrid(
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           childAspectRatio: 0.75,
                           crossAxisSpacing: 16,
@@ -59,14 +60,15 @@ class ExploreView extends GetView<ExploreController> {
                         ),
                         delegate: SliverChildBuilderDelegate(
                           (context, index) {
-                            final destination = controller.filteredDestinations[index];
+                            final destination =
+                                controller.filteredDestinations[index];
                             return _buildDestinationCard(destination);
                           },
                           childCount: controller.filteredDestinations.length,
                         ),
                       ),
                     )),
-              
+
               const SliverToBoxAdapter(
                 child: SizedBox(height: 100),
               ),
@@ -202,8 +204,9 @@ class ExploreView extends GetView<ExploreController> {
               itemCount: controller.categories.length,
               itemBuilder: (context, index) {
                 final category = controller.categories[index];
-                final isSelected = category == controller.selectedCategory.value;
-                
+                final isSelected =
+                    category == controller.selectedCategory.value;
+
                 return Container(
                   margin: const EdgeInsets.only(right: 12),
                   child: GestureDetector(
@@ -215,12 +218,9 @@ class ExploreView extends GetView<ExploreController> {
                         vertical: 12,
                       ),
                       decoration: BoxDecoration(
-                        gradient: isSelected
-                            ? AppTheme.primaryGradient
-                            : null,
-                        color: isSelected
-                            ? null
-                            : Colors.white.withOpacity(0.1),
+                        gradient: isSelected ? AppTheme.primaryGradient : null,
+                        color:
+                            isSelected ? null : Colors.white.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(25),
                         border: Border.all(
                           color: isSelected
@@ -242,9 +242,8 @@ class ExploreView extends GetView<ExploreController> {
                         style: GoogleFonts.poppins(
                           color: Colors.white,
                           fontSize: 14,
-                          fontWeight: isSelected
-                              ? FontWeight.w600
-                              : FontWeight.w400,
+                          fontWeight:
+                              isSelected ? FontWeight.w600 : FontWeight.w400,
                         ),
                       ),
                     ),
@@ -289,7 +288,7 @@ class ExploreView extends GetView<ExploreController> {
                       ),
                     ),
                   ),
-                  
+
                   // Gradient Overlay
                   Container(
                     decoration: BoxDecoration(
@@ -303,7 +302,7 @@ class ExploreView extends GetView<ExploreController> {
                       ),
                     ),
                   ),
-                  
+
                   // Favorite Button
                   Positioned(
                     top: 12,
@@ -315,20 +314,25 @@ class ExploreView extends GetView<ExploreController> {
                         height: 36,
                         padding: const EdgeInsets.all(8),
                         child: Icon(
-                          destination.isFavorite ? Icons.favorite : Icons.favorite_border,
-                          color: destination.isFavorite ? Colors.red : Colors.white,
+                          destination.isFavorite
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          color: destination.isFavorite
+                              ? Colors.red
+                              : Colors.white,
                           size: 16,
                         ),
                       ),
                     ),
                   ),
-                  
+
                   // Rating Badge
                   Positioned(
                     top: 12,
                     left: 12,
                     child: GlassmorphicContainer(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -350,7 +354,7 @@ class ExploreView extends GetView<ExploreController> {
                       ),
                     ),
                   ),
-                  
+
                   // Content
                   Positioned(
                     bottom: 12,

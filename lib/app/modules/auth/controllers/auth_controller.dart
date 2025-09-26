@@ -29,10 +29,10 @@ class AuthController extends GetxController {
   Future<void> login() async {
     if (formKey.currentState!.validate()) {
       isLoading.value = true;
-      
+
       // Simulate API call
       await Future.delayed(const Duration(seconds: 2));
-      
+
       isLoading.value = false;
       Get.snackbar(
         'Success',
@@ -41,7 +41,7 @@ class AuthController extends GetxController {
         backgroundColor: Colors.green,
         colorText: Colors.white,
       );
-      
+
       Get.offAllNamed(AppRoutes.HOME);
     }
   }
@@ -60,10 +60,10 @@ class AuthController extends GetxController {
       }
 
       isLoading.value = true;
-      
+
       // Simulate API call
       await Future.delayed(const Duration(seconds: 2));
-      
+
       isLoading.value = false;
       Get.snackbar(
         'Success',
@@ -72,17 +72,17 @@ class AuthController extends GetxController {
         backgroundColor: Colors.green,
         colorText: Colors.white,
       );
-      
+
       Get.offAllNamed(AppRoutes.HOME);
     }
   }
 
   Future<void> loginWithGoogle() async {
     isLoading.value = true;
-    
+
     // Simulate Google login
     await Future.delayed(const Duration(seconds: 2));
-    
+
     isLoading.value = false;
     Get.snackbar(
       'Success',
@@ -91,16 +91,16 @@ class AuthController extends GetxController {
       backgroundColor: Colors.green,
       colorText: Colors.white,
     );
-    
+
     Get.offAllNamed(AppRoutes.HOME);
   }
 
   Future<void> loginWithApple() async {
     isLoading.value = true;
-    
+
     // Simulate Apple login
     await Future.delayed(const Duration(seconds: 2));
-    
+
     isLoading.value = false;
     Get.snackbar(
       'Success',
@@ -109,7 +109,7 @@ class AuthController extends GetxController {
       backgroundColor: Colors.green,
       colorText: Colors.white,
     );
-    
+
     Get.offAllNamed(AppRoutes.HOME);
   }
 

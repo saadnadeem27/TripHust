@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import '../../../core/theme/app_theme.dart';
 import '../../../widgets/glassmorphic_widgets_new.dart';
 import '../../../data/models/destination.dart';
@@ -29,27 +29,27 @@ class HomeView extends GetView<HomeController> {
               SliverToBoxAdapter(
                 child: _buildWelcomeSection(),
               ),
-              
+
               // Quick Actions
               SliverToBoxAdapter(
                 child: _buildQuickActions(),
               ),
-              
+
               // Categories
               SliverToBoxAdapter(
                 child: _buildCategories(),
               ),
-              
+
               // Featured Destinations
               SliverToBoxAdapter(
                 child: _buildFeaturedDestinations(),
               ),
-              
+
               // Popular Packages
               SliverToBoxAdapter(
                 child: _buildPopularPackages(),
               ),
-              
+
               const SliverToBoxAdapter(
                 child: SizedBox(height: 100),
               ),
@@ -129,6 +129,7 @@ class HomeView extends GetView<HomeController> {
           const SizedBox(height: 20),
           GlassmorphicCard(
             padding: const EdgeInsets.all(16),
+            onTap: controller.goToSearch,
             child: Row(
               children: [
                 const Icon(
@@ -148,7 +149,6 @@ class HomeView extends GetView<HomeController> {
                 ),
               ],
             ),
-            onTap: controller.goToSearch,
           ),
         ],
       ),
@@ -289,8 +289,9 @@ class HomeView extends GetView<HomeController> {
                   itemCount: controller.categories.length,
                   itemBuilder: (context, index) {
                     final category = controller.categories[index];
-                    final isSelected = category == controller.selectedCategory.value;
-                    
+                    final isSelected =
+                        category == controller.selectedCategory.value;
+
                     return Container(
                       margin: const EdgeInsets.only(right: 12),
                       child: GestureDetector(
@@ -301,9 +302,8 @@ class HomeView extends GetView<HomeController> {
                             vertical: 12,
                           ),
                           decoration: BoxDecoration(
-                            gradient: isSelected
-                                ? AppTheme.primaryGradient
-                                : null,
+                            gradient:
+                                isSelected ? AppTheme.primaryGradient : null,
                             color: isSelected
                                 ? null
                                 : Colors.white.withOpacity(0.1),
@@ -426,7 +426,9 @@ class HomeView extends GetView<HomeController> {
                   height: 40,
                   padding: const EdgeInsets.all(8),
                   child: Icon(
-                    destination.isFavorite ? Icons.favorite : Icons.favorite_border,
+                    destination.isFavorite
+                        ? Icons.favorite
+                        : Icons.favorite_border,
                     color: destination.isFavorite ? Colors.red : Colors.white,
                     size: 20,
                   ),

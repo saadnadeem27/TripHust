@@ -20,18 +20,18 @@ class HomeController extends GetxController {
 
   void loadData() {
     isLoading.value = true;
-    
+
     // Load dummy data
     featuredDestinations.value = DummyData.destinations.take(6).toList();
     popularPackages.value = DummyData.travelPackages;
     categories.value = DummyData.categories;
-    
+
     isLoading.value = false;
   }
 
   void changeBottomNav(int index) {
     selectedBottomNavIndex.value = index;
-    
+
     switch (index) {
       case 0:
         // Home - already here

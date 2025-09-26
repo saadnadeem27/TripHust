@@ -17,7 +17,7 @@ class DestinationDetailView extends GetView<DestinationController> {
         slivers: [
           // Hero Image Section
           _buildHeroSection(),
-          
+
           // Content Section
           SliverToBoxAdapter(
             child: Container(
@@ -99,8 +99,11 @@ class DestinationDetailView extends GetView<DestinationController> {
                 child: GestureDetector(
                   onTap: controller.toggleFavorite,
                   child: Icon(
-                    controller.isFavorite.value ? Icons.favorite : Icons.favorite_border,
-                    color: controller.isFavorite.value ? Colors.red : Colors.white,
+                    controller.isFavorite.value
+                        ? Icons.favorite
+                        : Icons.favorite_border,
+                    color:
+                        controller.isFavorite.value ? Colors.red : Colors.white,
                     size: 20,
                   ),
                 ),
@@ -139,7 +142,8 @@ class DestinationDetailView extends GetView<DestinationController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
                       gradient: AppTheme.primaryGradient,
                       borderRadius: BorderRadius.circular(20),
@@ -180,7 +184,8 @@ class DestinationDetailView extends GetView<DestinationController> {
                   const SizedBox(height: 4),
                   Row(
                     children: [
-                      const Icon(Icons.location_on, color: Colors.white70, size: 16),
+                      const Icon(Icons.location_on,
+                          color: Colors.white70, size: 16),
                       const SizedBox(width: 4),
                       Text(
                         '${controller.destination.city}, ${controller.destination.country}',
@@ -384,7 +389,8 @@ class DestinationDetailView extends GetView<DestinationController> {
             runSpacing: 12,
             children: controller.destination.activities.map((activity) {
               return Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
                   gradient: AppTheme.cardGradient,
                   borderRadius: BorderRadius.circular(20),
@@ -546,8 +552,12 @@ class DestinationDetailView extends GetView<DestinationController> {
                 child: GestureDetector(
                   onTap: controller.toggleBookmark,
                   child: Icon(
-                    controller.isBookmarked.value ? Icons.bookmark : Icons.bookmark_border,
-                    color: controller.isBookmarked.value ? AppTheme.primaryColor : Colors.white,
+                    controller.isBookmarked.value
+                        ? Icons.bookmark
+                        : Icons.bookmark_border,
+                    color: controller.isBookmarked.value
+                        ? AppTheme.primaryColor
+                        : Colors.white,
                     size: 24,
                   ),
                 ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ItineraryBuilderView extends StatelessWidget {
-  const ItineraryBuilderView({Key? key}) : super(key: key);
+  const ItineraryBuilderView({super.key});
 
   @override
   Widget build(BuildContext context) {

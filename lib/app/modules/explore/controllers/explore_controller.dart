@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../../../data/models/destination.dart';
 import '../../../data/dummy_data.dart';
 import '../../destination/views/destination_detail_view.dart';
+import '../../destination/bindings/destination_binding.dart';
 
 class ExploreController extends GetxController {
   final searchController = TextEditingController();
@@ -143,7 +144,7 @@ class ExploreController extends GetxController {
   }
 
   void goToDestinationDetail(Destination destination) {
-    Get.to(() => const DestinationDetailView(), arguments: destination);
+    Get.to(() => const DestinationDetailView(), arguments: destination, binding: DestinationBinding());
   }
 
   @override

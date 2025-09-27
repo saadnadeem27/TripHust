@@ -7,6 +7,9 @@ import '../../../core/theme/app_theme.dart';
 import '../../../widgets/glassmorphic_widgets_new.dart';
 import '../../../data/models/destination.dart';
 import '../controllers/home_controller.dart';
+import '../../explore/views/explore_view.dart';
+import '../../journal/views/travel_journal_view.dart';
+import '../../profile/views/profile_view.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
@@ -16,48 +19,67 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: _buildAppBar(),
-      body: AnimatedGradientBackground(
-        colors: const [
-          Color(0xFF0A0A0A),
-          Color(0xFF1A1A2E),
-          Color(0xFF16213E),
-        ],
-        child: SafeArea(
-          child: CustomScrollView(
-            slivers: [
-              // Welcome Section
-              SliverToBoxAdapter(
-                child: _buildWelcomeSection(),
-              ),
+      body: Obx(() => _buildBody()),
+      bottomNavigationBar: _buildBottomNavBar(),
+    );
+  }
 
-              // Quick Actions
-              SliverToBoxAdapter(
-                child: _buildQuickActions(),
-              ),
+  Widget _buildBody() {
+    switch (controller.selectedBottomNavIndex.value) {
+      case 0:
+        return _buildHomeContent();
+      case 1:
+        return const ExploreView();
+      case 2:
+        return const TravelJournalView();
+      case 3:
+        return const ProfileView();
+      default:
+        return _buildHomeContent();
+    }
+  }
 
-              // Categories
-              SliverToBoxAdapter(
-                child: _buildCategories(),
-              ),
+  Widget _buildHomeContent() {
+    return AnimatedGradientBackground(
+      colors: const [
+        Color(0xFF0A0A0A),
+        Color(0xFF1A1A2E),
+        Color(0xFF16213E),
+      ],
+      child: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            // Welcome Section
+            SliverToBoxAdapter(
+              child: _buildWelcomeSection(),
+            ),
 
-              // Featured Destinations
-              SliverToBoxAdapter(
-                child: _buildFeaturedDestinations(),
-              ),
+            // Quick Actions
+            SliverToBoxAdapter(
+              child: _buildQuickActions(),
+            ),
 
-              // Popular Packages
-              SliverToBoxAdapter(
-                child: _buildPopularPackages(),
-              ),
+            // Categories
+            SliverToBoxAdapter(
+              child: _buildCategories(),
+            ),
 
-              const SliverToBoxAdapter(
-                child: SizedBox(height: 100),
-              ),
-            ],
-          ),
+            // Featured Destinations
+            SliverToBoxAdapter(
+              child: _buildFeaturedDestinations(),
+            ),
+
+            // Popular Packages
+            SliverToBoxAdapter(
+              child: _buildPopularPackages(),
+            ),
+
+            const SliverToBoxAdapter(
+              child: SizedBox(height: 100),
+            ),
+          ],
         ),
       ),
-      bottomNavigationBar: _buildBottomNavBar(),
     );
   }
 
@@ -507,13 +529,29 @@ class HomeView extends GetView<HomeController> {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Text(
-              'Popular Packages',
-              style: GoogleFonts.poppins(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: Colors.white,
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Popular Packages',
+                  style: GoogleFonts.poppins(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: controller.goToPopularPackages,
+                  child: Text(
+                    'View All',
+                    style: GoogleFonts.poppins(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: AppTheme.primaryColor,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 16),

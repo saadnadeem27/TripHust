@@ -9,7 +9,10 @@ import '../../journal/bindings/journal_binding.dart';
 import '../../profile/views/profile_view.dart';
 import '../../profile/bindings/profile_binding.dart';
 import '../../destination/views/destination_detail_view.dart';
+import '../../destination/bindings/destination_binding.dart';
 import '../../itinerary/views/itinerary_builder_view.dart';
+import '../../itinerary/bindings/itinerary_binding.dart';
+import '../../packages/views/popular_packages_view.dart';
 
 class HomeController extends GetxController {
   final RxInt selectedBottomNavIndex = 0.obs;
@@ -38,21 +41,20 @@ class HomeController extends GetxController {
 
   void changeBottomNav(int index) {
     selectedBottomNavIndex.value = index;
+    // Just update the index, the view will handle showing different content
+  }
 
-    switch (index) {
-      case 0:
-        // Home - already here
-        break;
-      case 1:
-        Get.to(() => const ExploreView(), binding: ExploreBinding());
-        break;
-      case 2:
-        Get.to(() => const TravelJournalView(), binding: JournalBinding());
-        break;
-      case 3:
-        Get.to(() => const ProfileView(), binding: ProfileBinding());
-        break;
-    }
+  // Navigation methods for non-bottom nav screens
+  void navigateToExplore() {
+    Get.to(() => const ExploreView(), binding: ExploreBinding());
+  }
+
+  void navigateToJournal() {
+    Get.to(() => const TravelJournalView(), binding: JournalBinding());
+  }
+
+  void navigateToProfile() {
+    Get.to(() => const ProfileView(), binding: ProfileBinding());
   }
 
   void selectCategory(String category) {
@@ -68,7 +70,7 @@ class HomeController extends GetxController {
   }
 
   void goToDestinationDetail(Destination destination) {
-    Get.to(() => const DestinationDetailView(), arguments: destination);
+    Get.to(() => const DestinationDetailView(), arguments: destination, binding: DestinationBinding());
   }
 
   void goToSearch() {
@@ -82,7 +84,7 @@ class HomeController extends GetxController {
   }
 
   void goToItineraryBuilder() {
-    Get.to(() => const ItineraryBuilderView());
+    Get.to(() => const ItineraryBuilderView(), binding: ItineraryBinding());
   }
 
   void goToARGuide() {
@@ -98,5 +100,9 @@ class HomeController extends GetxController {
   void goToExpenseTracker() {
     // Get.to(() => const ExpenseTrackerView()); // Implement when available
     Get.snackbar('Info', 'Expense Tracker feature coming soon!');
+  }
+
+  void goToPopularPackages() {
+    Get.to(() => const PopularPackagesView());
   }
 }

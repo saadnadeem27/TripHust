@@ -30,19 +30,19 @@ class AuthController extends GetxController {
 
   Future<void> login() async {
     // if (formKey.currentState!.validate()) {
-      isLoading.value = true;
+    isLoading.value = true;
 
-      // Simulate API call
-      await Future.delayed(const Duration(seconds: 2));
+    // Simulate API call
+    await Future.delayed(const Duration(seconds: 2));
 
-      isLoading.value = false;
-      Get.snackbar(
-        'Success',
-        'Login successful!',
-        snackPosition: SnackPosition.TOP,
-        backgroundColor: Colors.green,
-        colorText: Colors.white,
-      );
+    isLoading.value = false;
+    Get.snackbar(
+      'Success',
+      'Login successful!',
+      snackPosition: SnackPosition.TOP,
+      backgroundColor: Colors.green,
+      colorText: Colors.white,
+    );
 
     // Ensure HomeController is registered before navigation
     HomeBinding().dependencies();
@@ -77,8 +77,8 @@ class AuthController extends GetxController {
         colorText: Colors.white,
       );
 
-  HomeBinding().dependencies();
-  Get.offAll(() => const HomeView(), binding: HomeBinding());
+      HomeBinding().dependencies();
+      Get.offAll(() => const HomeView(), binding: HomeBinding());
     }
   }
 
@@ -97,8 +97,8 @@ class AuthController extends GetxController {
       colorText: Colors.white,
     );
 
-  HomeBinding().dependencies();
-  Get.offAll(() => const HomeView(), binding: HomeBinding());
+    HomeBinding().dependencies();
+    Get.offAll(() => const HomeView(), binding: HomeBinding());
   }
 
   Future<void> loginWithApple() async {
@@ -116,8 +116,8 @@ class AuthController extends GetxController {
       colorText: Colors.white,
     );
 
-  HomeBinding().dependencies();
-  Get.offAll(() => const HomeView(), binding: HomeBinding());
+    HomeBinding().dependencies();
+    Get.offAll(() => const HomeView(), binding: HomeBinding());
   }
 
   void goToRegister() {

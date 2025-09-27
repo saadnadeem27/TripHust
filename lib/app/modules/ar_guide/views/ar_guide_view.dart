@@ -257,19 +257,22 @@ class ARGuideView extends GetView<ARGuideController> {
       {
         'name': 'Times Square',
         'city': 'New York',
-        'image': 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=400',
+        'image':
+            'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=400',
         'arFeatures': 12,
       },
       {
         'name': 'Eiffel Tower',
         'city': 'Paris',
-        'image': 'https://images.unsplash.com/photo-1543349689-9a4d426bee8e?w=400',
+        'image':
+            'https://images.unsplash.com/photo-1543349689-9a4d426bee8e?w=400',
         'arFeatures': 18,
       },
       {
         'name': 'Tokyo Tower',
         'city': 'Tokyo',
-        'image': 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400',
+        'image':
+            'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400',
         'arFeatures': 15,
       },
     ];

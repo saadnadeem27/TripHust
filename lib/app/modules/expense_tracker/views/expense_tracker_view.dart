@@ -48,7 +48,8 @@ class ExpenseTrackerView extends GetView<ExpenseTrackerController> {
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(color: Colors.white.withOpacity(0.2)),
               ),
-              child: const Icon(Icons.arrow_back_ios, color: Colors.white, size: 20),
+              child: const Icon(Icons.arrow_back_ios,
+                  color: Colors.white, size: 20),
             ),
           ),
           const SizedBox(width: 16),
@@ -58,7 +59,8 @@ class ExpenseTrackerView extends GetView<ExpenseTrackerController> {
               gradient: AppTheme.primaryGradient,
               borderRadius: BorderRadius.circular(16),
             ),
-            child: const Icon(Icons.account_balance_wallet, size: 24, color: Colors.white),
+            child: const Icon(Icons.account_balance_wallet,
+                size: 24, color: Colors.white),
           ),
           const SizedBox(width: 12),
           Text(
@@ -104,7 +106,9 @@ class ExpenseTrackerView extends GetView<ExpenseTrackerController> {
                       value: controller.budgetPercentage.clamp(0.0, 1.0),
                       backgroundColor: Colors.white.withOpacity(0.2),
                       valueColor: AlwaysStoppedAnimation<Color>(
-                        controller.budgetPercentage > 0.8 ? Colors.red : AppTheme.primaryColor,
+                        controller.budgetPercentage > 0.8
+                            ? Colors.red
+                            : AppTheme.primaryColor,
                       ),
                     )),
                 const SizedBox(height: 12),
@@ -122,7 +126,9 @@ class ExpenseTrackerView extends GetView<ExpenseTrackerController> {
                           'Remaining: \$${controller.remainingBudget.toStringAsFixed(2)}',
                           style: GoogleFonts.poppins(
                             fontSize: 14,
-                            color: controller.remainingBudget >= 0 ? Colors.green : Colors.red,
+                            color: controller.remainingBudget >= 0
+                                ? Colors.green
+                                : Colors.red,
                             fontWeight: FontWeight.w600,
                           ),
                         )),
@@ -138,7 +144,8 @@ class ExpenseTrackerView extends GetView<ExpenseTrackerController> {
                 child: GlassmorphicCard(
                   child: Column(
                     children: [
-                      const Icon(Icons.trending_up, color: Colors.green, size: 32),
+                      const Icon(Icons.trending_up,
+                          color: Colors.green, size: 32),
                       const SizedBox(height: 8),
                       Text(
                         'Total Expenses',
@@ -202,21 +209,26 @@ class ExpenseTrackerView extends GetView<ExpenseTrackerController> {
               itemCount: controller.categories.length,
               itemBuilder: (context, index) {
                 final category = controller.categories[index];
-                final isSelected = controller.selectedCategory.value == category;
-                
+                final isSelected =
+                    controller.selectedCategory.value == category;
+
                 return Padding(
                   padding: const EdgeInsets.only(right: 12),
                   child: GestureDetector(
                     onTap: () => controller.selectCategory(category),
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 200),
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 12),
                       decoration: BoxDecoration(
                         gradient: isSelected ? AppTheme.primaryGradient : null,
-                        color: isSelected ? null : Colors.white.withOpacity(0.1),
+                        color:
+                            isSelected ? null : Colors.white.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(25),
                         border: Border.all(
-                          color: isSelected ? Colors.transparent : Colors.white.withOpacity(0.2),
+                          color: isSelected
+                              ? Colors.transparent
+                              : Colors.white.withOpacity(0.2),
                         ),
                       ),
                       child: Text(
@@ -224,7 +236,8 @@ class ExpenseTrackerView extends GetView<ExpenseTrackerController> {
                         style: GoogleFonts.poppins(
                           color: Colors.white,
                           fontSize: 14,
-                          fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
+                          fontWeight:
+                              isSelected ? FontWeight.w600 : FontWeight.w400,
                         ),
                       ),
                     ),
@@ -264,8 +277,9 @@ class ExpenseTrackerView extends GetView<ExpenseTrackerController> {
   }
 
   Widget _buildExpenseItem(Map<String, dynamic> expense) {
-    final categoryData = controller.categoryIcons[expense['category']] ?? {'icon': '💳', 'color': 'grey'};
-    
+    final categoryData = controller.categoryIcons[expense['category']] ??
+        {'icon': '💳', 'color': 'grey'};
+
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       child: GlassmorphicCard(
@@ -328,7 +342,8 @@ class ExpenseTrackerView extends GetView<ExpenseTrackerController> {
                 ),
                 IconButton(
                   onPressed: () => _showDeleteDialog(expense),
-                  icon: const Icon(Icons.delete_outline, color: Colors.white70, size: 20),
+                  icon: const Icon(Icons.delete_outline,
+                      color: Colors.white70, size: 20),
                 ),
               ],
             ),
@@ -423,8 +438,10 @@ class ExpenseTrackerView extends GetView<ExpenseTrackerController> {
                 decoration: const InputDecoration(
                   labelText: 'Title',
                   labelStyle: TextStyle(color: Colors.white70),
-                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white30)),
-                  focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white30)),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white)),
                 ),
               ),
               const SizedBox(height: 16),
@@ -435,8 +452,10 @@ class ExpenseTrackerView extends GetView<ExpenseTrackerController> {
                 decoration: const InputDecoration(
                   labelText: 'Amount (\$)',
                   labelStyle: TextStyle(color: Colors.white70),
-                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white30)),
-                  focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white30)),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white)),
                 ),
               ),
               const SizedBox(height: 16),
@@ -447,13 +466,16 @@ class ExpenseTrackerView extends GetView<ExpenseTrackerController> {
                 decoration: const InputDecoration(
                   labelText: 'Category',
                   labelStyle: TextStyle(color: Colors.white70),
-                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white30)),
-                  focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white30)),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white)),
                 ),
                 items: controller.categories.skip(1).map((category) {
                   return DropdownMenuItem(
                     value: category,
-                    child: Text(category, style: const TextStyle(color: Colors.white)),
+                    child: Text(category,
+                        style: const TextStyle(color: Colors.white)),
                   );
                 }).toList(),
                 onChanged: (value) => selectedCategory = value!,
@@ -464,15 +486,19 @@ class ExpenseTrackerView extends GetView<ExpenseTrackerController> {
                   Expanded(
                     child: TextButton(
                       onPressed: () => Get.back(),
-                      child: const Text('Cancel', style: TextStyle(color: Colors.white70)),
+                      child: const Text('Cancel',
+                          style: TextStyle(color: Colors.white70)),
                     ),
                   ),
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        if (titleController.text.isNotEmpty && amountController.text.isNotEmpty) {
+                        if (titleController.text.isNotEmpty &&
+                            amountController.text.isNotEmpty) {
                           final expense = {
-                            'id': DateTime.now().millisecondsSinceEpoch.toString(),
+                            'id': DateTime.now()
+                                .millisecondsSinceEpoch
+                                .toString(),
                             'title': titleController.text,
                             'amount': double.parse(amountController.text),
                             'category': selectedCategory,
@@ -483,8 +509,10 @@ class ExpenseTrackerView extends GetView<ExpenseTrackerController> {
                           Get.back();
                         }
                       },
-                      style: ElevatedButton.styleFrom(backgroundColor: AppTheme.primaryColor),
-                      child: const Text('Add', style: TextStyle(color: Colors.white)),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: AppTheme.primaryColor),
+                      child: const Text('Add',
+                          style: TextStyle(color: Colors.white)),
                     ),
                   ),
                 ],
@@ -500,7 +528,8 @@ class ExpenseTrackerView extends GetView<ExpenseTrackerController> {
     Get.dialog(
       AlertDialog(
         backgroundColor: const Color(0xFF1A1A2E),
-        title: const Text('Delete Expense', style: TextStyle(color: Colors.white)),
+        title:
+            const Text('Delete Expense', style: TextStyle(color: Colors.white)),
         content: Text(
           'Are you sure you want to delete "${expense['title']}"?',
           style: const TextStyle(color: Colors.white70),

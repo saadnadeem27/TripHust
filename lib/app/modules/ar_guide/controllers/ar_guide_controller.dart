@@ -4,7 +4,8 @@ class ARGuideController extends GetxController {
   final RxBool isARActive = false.obs;
   final RxBool isLocationPermissionGranted = false.obs;
   final RxBool isCameraPermissionGranted = false.obs;
-  final RxList<Map<String, dynamic>> nearbyPoints = <Map<String, dynamic>>[].obs;
+  final RxList<Map<String, dynamic>> nearbyPoints =
+      <Map<String, dynamic>>[].obs;
 
   @override
   void onInit() {

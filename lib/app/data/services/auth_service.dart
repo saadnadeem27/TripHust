@@ -4,7 +4,7 @@ import 'supabase_config.dart';
 
 class AuthService {
   // static final _client = SupabaseConfig.client;
-  
+
   // Sign Up
   static Future<Map<String, dynamic>> signUp({
     required String email,
@@ -17,7 +17,7 @@ class AuthService {
       //   password: password,
       //   data: {'name': name},
       // );
-      
+
       // if (response.user != null) {
       //   await createUserProfile(
       //     userId: response.user!.id,
@@ -26,13 +26,13 @@ class AuthService {
       //   );
       //   return {'success': true, 'user': response.user};
       // }
-      
+
       return {'success': false, 'error': 'Failed to create account'};
     } catch (e) {
       return {'success': false, 'error': e.toString()};
     }
   }
-  
+
   // Sign In
   static Future<Map<String, dynamic>> signIn({
     required String email,
@@ -43,17 +43,17 @@ class AuthService {
       //   email: email,
       //   password: password,
       // );
-      
+
       // if (response.user != null) {
       //   return {'success': true, 'user': response.user};
       // }
-      
+
       return {'success': false, 'error': 'Invalid credentials'};
     } catch (e) {
       return {'success': false, 'error': e.toString()};
     }
   }
-  
+
   // Sign Out
   static Future<void> signOut() async {
     try {
@@ -62,15 +62,16 @@ class AuthService {
       throw Exception('Failed to sign out: $e');
     }
   }
-  
+
   // Get Current User
   static getCurrentUser() {
     // return _client.auth.currentUser;
     return null;
   }
-  
+
   // Reset Password
-  static Future<Map<String, dynamic>> resetPassword({required String email}) async {
+  static Future<Map<String, dynamic>> resetPassword(
+      {required String email}) async {
     try {
       // await _client.auth.resetPasswordForEmail(email);
       return {'success': true, 'message': 'Password reset email sent'};
@@ -78,7 +79,7 @@ class AuthService {
       return {'success': false, 'error': e.toString()};
     }
   }
-  
+
   // Create User Profile
   static Future<void> createUserProfile({
     required String userId,
@@ -95,7 +96,7 @@ class AuthService {
       throw Exception('Failed to create user profile: $e');
     }
   }
-  
+
   // Update User Profile
   static Future<Map<String, dynamic>> updateUserProfile({
     required String userId,
@@ -113,18 +114,18 @@ class AuthService {
       if (bio != null) updateData['bio'] = bio;
       if (country != null) updateData['country'] = country;
       updateData['updated_at'] = DateTime.now().toIso8601String();
-      
+
       // await _client
       //     .from(SupabaseConfig.usersTable)
       //     .update(updateData)
       //     .eq('id', userId);
-      
+
       return {'success': true, 'message': 'Profile updated successfully'};
     } catch (e) {
       return {'success': false, 'error': e.toString()};
     }
   }
-  
+
   // Get User Profile
   static Future<Map<String, dynamic>?> getUserProfile(String userId) async {
     try {
@@ -133,7 +134,7 @@ class AuthService {
       //     .select()
       //     .eq('id', userId)
       //     .single();
-      
+
       // return response;
       return null;
     } catch (e) {

@@ -117,9 +117,9 @@ class CurrencyConverterView extends GetView<CurrencyConverterController> {
               label: 'From',
               isFrom: true,
             ),
-            
+
             const SizedBox(height: 20),
-            
+
             // Swap Button
             Center(
               child: GestureDetector(
@@ -146,9 +146,9 @@ class CurrencyConverterView extends GetView<CurrencyConverterController> {
                 ),
               ),
             ),
-            
+
             const SizedBox(height: 20),
-            
+
             // To Currency
             _buildCurrencyInput(
               label: 'To',
@@ -191,13 +191,16 @@ class CurrencyConverterView extends GetView<CurrencyConverterController> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          controller.getCurrencyFlag(
-                              isFrom ? controller.fromCurrency.value : controller.toCurrency.value),
+                          controller.getCurrencyFlag(isFrom
+                              ? controller.fromCurrency.value
+                              : controller.toCurrency.value),
                           style: const TextStyle(fontSize: 24),
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          isFrom ? controller.fromCurrency.value : controller.toCurrency.value,
+                          isFrom
+                              ? controller.fromCurrency.value
+                              : controller.toCurrency.value,
                           style: GoogleFonts.poppins(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
@@ -214,13 +217,14 @@ class CurrencyConverterView extends GetView<CurrencyConverterController> {
                     ),
                   ),
                 )),
-            
+
             const SizedBox(width: 16),
-            
+
             // Amount Input
             Expanded(
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(12),
@@ -246,8 +250,8 @@ class CurrencyConverterView extends GetView<CurrencyConverterController> {
                         ),
                       )
                     : Obx(() => Text(
-                          controller.isLoading.value 
-                              ? '...' 
+                          controller.isLoading.value
+                              ? '...'
                               : controller.convertedAmount.value,
                           style: GoogleFonts.poppins(
                             fontSize: 18,
@@ -306,7 +310,8 @@ class CurrencyConverterView extends GetView<CurrencyConverterController> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
                     color: Colors.green.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(12),
@@ -328,7 +333,7 @@ class CurrencyConverterView extends GetView<CurrencyConverterController> {
 
   Widget _buildQuickAmountButtons() {
     final amounts = ['10', '50', '100', '500', '1000'];
-    
+
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -346,27 +351,30 @@ class CurrencyConverterView extends GetView<CurrencyConverterController> {
           Wrap(
             spacing: 12,
             runSpacing: 12,
-            children: amounts.map((amount) => GestureDetector(
-                  onTap: () => controller.updateAmount(amount),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                    decoration: BoxDecoration(
-                      gradient: AppTheme.cardGradient,
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                        color: Colors.white.withOpacity(0.2),
+            children: amounts
+                .map((amount) => GestureDetector(
+                      onTap: () => controller.updateAmount(amount),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 12),
+                        decoration: BoxDecoration(
+                          gradient: AppTheme.cardGradient,
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: Colors.white.withOpacity(0.2),
+                          ),
+                        ),
+                        child: Text(
+                          amount,
+                          style: GoogleFonts.poppins(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
-                    ),
-                    child: Text(
-                      amount,
-                      style: GoogleFonts.poppins(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                )).toList(),
+                    ))
+                .toList(),
           ),
         ],
       ),

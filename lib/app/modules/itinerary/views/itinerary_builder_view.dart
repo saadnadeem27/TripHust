@@ -305,7 +305,8 @@ class ItineraryBuilderView extends GetView<ItineraryController> {
                             children: [
                               Icon(Icons.edit, color: Colors.white70, size: 20),
                               SizedBox(width: 8),
-                              Text('Edit', style: TextStyle(color: Colors.white)),
+                              Text('Edit',
+                                  style: TextStyle(color: Colors.white)),
                             ],
                           ),
                         ),
@@ -315,7 +316,8 @@ class ItineraryBuilderView extends GetView<ItineraryController> {
                             children: [
                               Icon(Icons.delete, color: Colors.red, size: 20),
                               SizedBox(width: 8),
-                              Text('Delete', style: TextStyle(color: Colors.red)),
+                              Text('Delete',
+                                  style: TextStyle(color: Colors.red)),
                             ],
                           ),
                         ),
@@ -326,7 +328,8 @@ class ItineraryBuilderView extends GetView<ItineraryController> {
                 const SizedBox(height: 4),
                 Row(
                   children: [
-                    const Icon(Icons.location_on, color: Colors.white70, size: 16),
+                    const Icon(Icons.location_on,
+                        color: Colors.white70, size: 16),
                     const SizedBox(width: 4),
                     Text(
                       trip['destination'],
@@ -337,7 +340,8 @@ class ItineraryBuilderView extends GetView<ItineraryController> {
                 const SizedBox(height: 8),
                 Row(
                   children: [
-                    const Icon(Icons.calendar_today, color: Colors.white70, size: 16),
+                    const Icon(Icons.calendar_today,
+                        color: Colors.white70, size: 16),
                     const SizedBox(width: 4),
                     Text(
                       '${trip['startDate']} - ${trip['endDate']}',
@@ -348,14 +352,16 @@ class ItineraryBuilderView extends GetView<ItineraryController> {
                 const SizedBox(height: 8),
                 Row(
                   children: [
-                    const Icon(Icons.attach_money, color: Colors.white70, size: 16),
+                    const Icon(Icons.attach_money,
+                        color: Colors.white70, size: 16),
                     const SizedBox(width: 4),
                     Text(
                       'Budget: \$${trip['budget'].toStringAsFixed(0)}',
                       style: const TextStyle(color: Colors.white70),
                     ),
                     if (trip['spent'] > 0) ...[
-                      const Text(' • ', style: TextStyle(color: Colors.white70)),
+                      const Text(' • ',
+                          style: TextStyle(color: Colors.white70)),
                       Text(
                         'Spent: \$${trip['spent'].toStringAsFixed(0)}',
                         style: const TextStyle(color: Colors.white70),

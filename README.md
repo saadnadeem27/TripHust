@@ -7,7 +7,7 @@
 
 > **A sophisticated, feature-rich travel application built with Flutter, designed to revolutionize how travelers plan, track, and share their adventures.**
 
-## 📱 Screenshots & Demo
+<!-- ## 📱 Screenshots & Demo
 
 <div align="center">
 
@@ -15,7 +15,7 @@
 |-------------|--------------|----------|---------|
 | ![Home](https://via.placeholder.com/200x400/1A1A2E/FFFFFF?text=Home) | ![Destinations](https://via.placeholder.com/200x400/16213E/FFFFFF?text=Destinations) | ![AR Guide](https://via.placeholder.com/200x400/0A0A0A/FFFFFF?text=AR+Guide) | ![Journal](https://via.placeholder.com/200x400/1A1A2E/FFFFFF?text=Journal) |
 
-</div>
+</div> -->
 
 ## ✨ Key Features
 

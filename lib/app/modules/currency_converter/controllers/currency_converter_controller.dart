@@ -7,7 +7,7 @@ class CurrencyConverterController extends GetxController {
   final RxString convertedAmount = '0.85'.obs;
   final RxBool isLoading = false.obs;
   final RxList<String> recentConversions = <String>[].obs;
-  
+
   final List<Map<String, String>> currencies = [
     {'code': 'USD', 'name': 'US Dollar', 'flag': '🇺🇸'},
     {'code': 'EUR', 'name': 'Euro', 'flag': '🇪🇺'},
@@ -54,32 +54,33 @@ class CurrencyConverterController extends GetxController {
 
   void convertCurrency() {
     isLoading.value = true;
-    
+
     // Simulate API call delay
     Future.delayed(const Duration(milliseconds: 500), () {
       final inputAmount = double.tryParse(amount.value) ?? 0.0;
       final rateKey = '${fromCurrency.value}_${toCurrency.value}';
       final reverseRateKey = '${toCurrency.value}_${fromCurrency.value}';
-      
+
       double rate = 1.0;
       if (exchangeRates.containsKey(rateKey)) {
         rate = exchangeRates[rateKey]!;
       } else if (exchangeRates.containsKey(reverseRateKey)) {
         rate = 1.0 / exchangeRates[reverseRateKey]!;
       }
-      
+
       final result = inputAmount * rate;
       convertedAmount.value = result.toStringAsFixed(2);
-      
+
       // Add to recent conversions
-      final conversion = '${amount.value} ${fromCurrency.value} → ${convertedAmount.value} ${toCurrency.value}';
+      final conversion =
+          '${amount.value} ${fromCurrency.value} → ${convertedAmount.value} ${toCurrency.value}';
       if (!recentConversions.contains(conversion)) {
         recentConversions.insert(0, conversion);
         if (recentConversions.length > 10) {
           recentConversions.removeLast();
         }
       }
-      
+
       isLoading.value = false;
     });
   }

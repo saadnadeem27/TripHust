@@ -3,16 +3,16 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class SupabaseConfig {
   static const String supabaseUrl = 'YOUR_SUPABASE_URL_HERE';
   static const String supabaseKey = 'YOUR_SUPABASE_ANON_KEY_HERE';
-  
+
   static SupabaseClient get client => Supabase.instance.client;
-  
+
   static Future<void> initialize() async {
     await Supabase.initialize(
       url: supabaseUrl,
       anonKey: supabaseKey,
     );
   }
-  
+
   // Database Tables
   static const String usersTable = 'users';
   static const String destinationsTable = 'destinations';
@@ -23,7 +23,7 @@ class SupabaseConfig {
   static const String packagesTable = 'packages';
   static const String reviewsTable = 'reviews';
   static const String favoritesTable = 'favorites';
-  
+
   // Storage Buckets
   static const String profileImagesBucket = 'profile-images';
   static const String journalImagesBucket = 'journal-images';
@@ -32,7 +32,6 @@ class SupabaseConfig {
 
 // SQL Table Creation Queries
 class SupabaseTables {
-  
   // Users Table
   static const String createUsersTable = '''
     CREATE TABLE users (
@@ -54,7 +53,7 @@ class SupabaseTables {
     CREATE POLICY "Users can view own profile" ON users FOR SELECT USING (auth.uid() = id);
     CREATE POLICY "Users can update own profile" ON users FOR UPDATE USING (auth.uid() = id);
   ''';
-  
+
   // Destinations Table
   static const String createDestinationsTable = '''
     CREATE TABLE destinations (
@@ -88,7 +87,7 @@ class SupabaseTables {
     ALTER TABLE destinations ENABLE ROW LEVEL SECURITY;
     CREATE POLICY "Destinations are publicly readable" ON destinations FOR SELECT USING (true);
   ''';
-  
+
   // Bookings Table
   static const String createBookingsTable = '''
     CREATE TABLE bookings (
@@ -119,7 +118,7 @@ class SupabaseTables {
     CREATE POLICY "Users can create own bookings" ON bookings FOR INSERT WITH CHECK (auth.uid() = user_id);
     CREATE POLICY "Users can update own bookings" ON bookings FOR UPDATE USING (auth.uid() = user_id);
   ''';
-  
+
   // Journal Entries Table
   static const String createJournalEntriesTable = '''
     CREATE TABLE journal_entries (
@@ -156,7 +155,7 @@ class SupabaseTables {
     CREATE POLICY "Users can update own journal entries" ON journal_entries FOR UPDATE USING (auth.uid() = user_id);
     CREATE POLICY "Users can delete own journal entries" ON journal_entries FOR DELETE USING (auth.uid() = user_id);
   ''';
-  
+
   // Expenses Table
   static const String createExpensesTable = '''
     CREATE TABLE expenses (
@@ -188,7 +187,7 @@ class SupabaseTables {
     CREATE POLICY "Users can update own expenses" ON expenses FOR UPDATE USING (auth.uid() = user_id);
     CREATE POLICY "Users can delete own expenses" ON expenses FOR DELETE USING (auth.uid() = user_id);
   ''';
-  
+
   // Itineraries Table
   static const String createItinerariesTable = '''
     CREATE TABLE itineraries (
@@ -222,7 +221,7 @@ class SupabaseTables {
     CREATE POLICY "Users can update own itineraries" ON itineraries FOR UPDATE USING (auth.uid() = user_id);
     CREATE POLICY "Users can delete own itineraries" ON itineraries FOR DELETE USING (auth.uid() = user_id);
   ''';
-  
+
   // Packages Table
   static const String createPackagesTable = '''
     CREATE TABLE packages (
@@ -260,7 +259,7 @@ class SupabaseTables {
     ALTER TABLE packages ENABLE ROW LEVEL SECURITY;
     CREATE POLICY "Packages are publicly readable" ON packages FOR SELECT USING (true);
   ''';
-  
+
   // Reviews Table
   static const String createReviewsTable = '''
     CREATE TABLE reviews (
@@ -297,7 +296,7 @@ class SupabaseTables {
     CREATE POLICY "Users can update own reviews" ON reviews FOR UPDATE USING (auth.uid() = user_id);
     CREATE POLICY "Users can delete own reviews" ON reviews FOR DELETE USING (auth.uid() = user_id);
   ''';
-  
+
   // Favorites Table
   static const String createFavoritesTable = '''
     CREATE TABLE favorites (
@@ -325,7 +324,7 @@ class SupabaseTables {
     CREATE POLICY "Users can create own favorites" ON favorites FOR INSERT WITH CHECK (auth.uid() = user_id);
     CREATE POLICY "Users can delete own favorites" ON favorites FOR DELETE USING (auth.uid() = user_id);
   ''';
-  
+
   // Create all tables at once
   static const String createAllTables = '''
     $createUsersTable

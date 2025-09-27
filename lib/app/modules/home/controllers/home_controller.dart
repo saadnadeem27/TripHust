@@ -99,7 +99,8 @@ class HomeController extends GetxController {
   }
 
   void goToCurrencyConverter() {
-    Get.to(() => const CurrencyConverterView(), binding: CurrencyConverterBinding());
+    Get.to(() => const CurrencyConverterView(),
+        binding: CurrencyConverterBinding());
   }
 
   void goToExpenseTracker() {

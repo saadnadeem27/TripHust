@@ -66,7 +66,8 @@ class ExpenseTrackerController extends GetxController {
   }
 
   void calculateTotals() {
-    totalExpenses.value = expenses.fold(0.0, (sum, expense) => sum + (expense['amount'] as double));
+    totalExpenses.value = expenses.fold(
+        0.0, (sum, expense) => sum + (expense['amount'] as double));
   }
 
   void addExpense(Map<String, dynamic> expense) {
@@ -91,11 +92,14 @@ class ExpenseTrackerController extends GetxController {
     if (selectedCategory.value == 'All') {
       return expenses;
     }
-    return expenses.where((expense) => expense['category'] == selectedCategory.value).toList();
+    return expenses
+        .where((expense) => expense['category'] == selectedCategory.value)
+        .toList();
   }
 
   double get remainingBudget => totalBudget.value - totalExpenses.value;
-  double get budgetPercentage => totalBudget.value > 0 ? (totalExpenses.value / totalBudget.value) : 0.0;
+  double get budgetPercentage =>
+      totalBudget.value > 0 ? (totalExpenses.value / totalBudget.value) : 0.0;
 
   void deleteExpense(String expenseId) {
     expenses.removeWhere((expense) => expense['id'] == expenseId);

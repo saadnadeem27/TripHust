@@ -3,28 +3,29 @@ import 'package:get/get.dart';
 
 class ItineraryController extends GetxController {
   final RxList<Map<String, dynamic>> itineraries = <Map<String, dynamic>>[].obs;
-  final RxList<Map<String, dynamic>> currentItinerary = <Map<String, dynamic>>[].obs;
+  final RxList<Map<String, dynamic>> currentItinerary =
+      <Map<String, dynamic>>[].obs;
   final RxBool isLoading = false.obs;
   final RxString selectedTab = 'My Trips'.obs;
   final RxInt selectedDay = 0.obs;
-  
+
   // Form controllers
   final TextEditingController tripNameController = TextEditingController();
   final TextEditingController destinationController = TextEditingController();
   final TextEditingController budgetController = TextEditingController();
-  
+
   // Date selection
   final Rx<DateTime?> startDate = Rx<DateTime?>(null);
   final Rx<DateTime?> endDate = Rx<DateTime?>(null);
-  
+
   final List<String> tabs = ['My Trips', 'Templates', 'Shared'];
-  
+
   @override
   void onInit() {
     super.onInit();
     loadItineraries();
   }
-  
+
   @override
   void onClose() {
     tripNameController.dispose();
@@ -32,10 +33,10 @@ class ItineraryController extends GetxController {
     budgetController.dispose();
     super.onClose();
   }
-  
+
   void loadItineraries() {
     isLoading.value = true;
-    
+
     // Simulate loading data
     Future.delayed(const Duration(seconds: 1), () {
       itineraries.value = [
@@ -48,24 +49,57 @@ class ItineraryController extends GetxController {
           'budget': 2500.0,
           'spent': 1200.0,
           'status': 'active',
-          'image': 'https://images.unsplash.com/photo-1543349689-9a4d426bee8e?w=400',
+          'image':
+              'https://images.unsplash.com/photo-1543349689-9a4d426bee8e?w=400',
           'days': [
             {
               'date': '2024-02-15',
               'activities': [
-                {'time': '09:00', 'title': 'Arrival at CDG Airport', 'type': 'transport'},
-                {'time': '11:00', 'title': 'Check-in at Hotel Le Marais', 'type': 'accommodation'},
-                {'time': '14:00', 'title': 'Lunch at Café de Flore', 'type': 'food'},
-                {'time': '16:00', 'title': 'Visit Louvre Museum', 'type': 'activity'},
+                {
+                  'time': '09:00',
+                  'title': 'Arrival at CDG Airport',
+                  'type': 'transport'
+                },
+                {
+                  'time': '11:00',
+                  'title': 'Check-in at Hotel Le Marais',
+                  'type': 'accommodation'
+                },
+                {
+                  'time': '14:00',
+                  'title': 'Lunch at Café de Flore',
+                  'type': 'food'
+                },
+                {
+                  'time': '16:00',
+                  'title': 'Visit Louvre Museum',
+                  'type': 'activity'
+                },
               ]
             },
             {
               'date': '2024-02-16',
               'activities': [
-                {'time': '09:00', 'title': 'Breakfast at hotel', 'type': 'food'},
-                {'time': '10:30', 'title': 'Climb Eiffel Tower', 'type': 'activity'},
-                {'time': '13:00', 'title': 'Seine River Cruise', 'type': 'activity'},
-                {'time': '19:00', 'title': 'Dinner at Le Jules Verne', 'type': 'food'},
+                {
+                  'time': '09:00',
+                  'title': 'Breakfast at hotel',
+                  'type': 'food'
+                },
+                {
+                  'time': '10:30',
+                  'title': 'Climb Eiffel Tower',
+                  'type': 'activity'
+                },
+                {
+                  'time': '13:00',
+                  'title': 'Seine River Cruise',
+                  'type': 'activity'
+                },
+                {
+                  'time': '19:00',
+                  'title': 'Dinner at Le Jules Verne',
+                  'type': 'food'
+                },
               ]
             }
           ]
@@ -79,13 +113,22 @@ class ItineraryController extends GetxController {
           'budget': 3200.0,
           'spent': 0.0,
           'status': 'planning',
-          'image': 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400',
+          'image':
+              'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400',
           'days': [
             {
               'date': '2024-03-10',
               'activities': [
-                {'time': '14:00', 'title': 'Arrival at Narita Airport', 'type': 'transport'},
-                {'time': '16:00', 'title': 'Check-in at Shibuya Hotel', 'type': 'accommodation'},
+                {
+                  'time': '14:00',
+                  'title': 'Arrival at Narita Airport',
+                  'type': 'transport'
+                },
+                {
+                  'time': '16:00',
+                  'title': 'Check-in at Shibuya Hotel',
+                  'type': 'accommodation'
+                },
                 {'time': '19:00', 'title': 'Dinner in Shibuya', 'type': 'food'},
               ]
             }
@@ -95,15 +138,15 @@ class ItineraryController extends GetxController {
       isLoading.value = false;
     });
   }
-  
+
   void selectTab(String tab) {
     selectedTab.value = tab;
   }
-  
+
   void selectDay(int dayIndex) {
     selectedDay.value = dayIndex;
   }
-  
+
   void createNewTrip() {
     Get.dialog(
       Dialog(
@@ -190,11 +233,13 @@ class ItineraryController extends GetxController {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
-                          startDate.value != null 
+                          startDate.value != null
                               ? '${startDate.value!.day}/${startDate.value!.month}/${startDate.value!.year}'
                               : 'Start Date',
                           style: TextStyle(
-                            color: startDate.value != null ? Colors.white : Colors.white70,
+                            color: startDate.value != null
+                                ? Colors.white
+                                : Colors.white70,
                           ),
                         ),
                       ),
@@ -211,11 +256,13 @@ class ItineraryController extends GetxController {
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
-                          endDate.value != null 
+                          endDate.value != null
                               ? '${endDate.value!.day}/${endDate.value!.month}/${endDate.value!.year}'
                               : 'End Date',
                           style: TextStyle(
-                            color: endDate.value != null ? Colors.white : Colors.white70,
+                            color: endDate.value != null
+                                ? Colors.white
+                                : Colors.white70,
                           ),
                         ),
                       ),
@@ -229,15 +276,16 @@ class ItineraryController extends GetxController {
                   Expanded(
                     child: TextButton(
                       onPressed: () => Get.back(),
-                      child: const Text('Cancel', style: TextStyle(color: Colors.white70)),
+                      child: const Text('Cancel',
+                          style: TextStyle(color: Colors.white70)),
                     ),
                   ),
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        if (tripNameController.text.isNotEmpty && 
+                        if (tripNameController.text.isNotEmpty &&
                             destinationController.text.isNotEmpty &&
-                            startDate.value != null && 
+                            startDate.value != null &&
                             endDate.value != null) {
                           _saveNewTrip();
                           Get.back();
@@ -258,7 +306,7 @@ class ItineraryController extends GetxController {
       ),
     );
   }
-  
+
   void _selectStartDate() async {
     final picked = await showDatePicker(
       context: Get.context!,
@@ -270,11 +318,12 @@ class ItineraryController extends GetxController {
       startDate.value = picked;
     }
   }
-  
+
   void _selectEndDate() async {
     final picked = await showDatePicker(
       context: Get.context!,
-      initialDate: startDate.value ?? DateTime.now().add(const Duration(days: 1)),
+      initialDate:
+          startDate.value ?? DateTime.now().add(const Duration(days: 1)),
       firstDate: startDate.value ?? DateTime.now(),
       lastDate: DateTime.now().add(const Duration(days: 365)),
     );
@@ -282,7 +331,7 @@ class ItineraryController extends GetxController {
       endDate.value = picked;
     }
   }
-  
+
   void _saveNewTrip() {
     final newTrip = {
       'id': DateTime.now().millisecondsSinceEpoch.toString(),
@@ -293,26 +342,27 @@ class ItineraryController extends GetxController {
       'budget': double.tryParse(budgetController.text) ?? 0.0,
       'spent': 0.0,
       'status': 'planning',
-      'image': 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400',
+      'image':
+          'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400',
       'days': []
     };
-    
+
     itineraries.insert(0, newTrip);
-    
+
     // Clear form
     tripNameController.clear();
     destinationController.clear();
     budgetController.clear();
     startDate.value = null;
     endDate.value = null;
-    
+
     Get.snackbar(
       'Success',
       'Trip created successfully!',
       snackPosition: SnackPosition.BOTTOM,
     );
   }
-  
+
   void editTrip(Map<String, dynamic> trip) {
     Get.snackbar(
       'Edit Trip',
@@ -320,7 +370,7 @@ class ItineraryController extends GetxController {
       snackPosition: SnackPosition.BOTTOM,
     );
   }
-  
+
   void deleteTrip(String tripId) {
     Get.dialog(
       AlertDialog(
@@ -351,7 +401,7 @@ class ItineraryController extends GetxController {
       ),
     );
   }
-  
+
   void viewTripDetails(Map<String, dynamic> trip) {
     currentItinerary.value = trip['days'] ?? [];
     Get.bottomSheet(
@@ -434,30 +484,33 @@ class ItineraryController extends GetxController {
                                 ),
                               ),
                               const SizedBox(height: 12),
-                              ...((day['activities'] as List).map((activity) => Padding(
-                                    padding: const EdgeInsets.only(bottom: 8),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          activity['time'],
-                                          style: const TextStyle(
-                                            color: Colors.white70,
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                        const SizedBox(width: 16),
-                                        Expanded(
-                                          child: Text(
-                                            activity['title'],
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 14,
+                              ...((day['activities'] as List)
+                                  .map((activity) => Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 8),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              activity['time'],
+                                              style: const TextStyle(
+                                                color: Colors.white70,
+                                                fontSize: 14,
+                                              ),
                                             ),
-                                          ),
+                                            const SizedBox(width: 16),
+                                            Expanded(
+                                              child: Text(
+                                                activity['title'],
+                                                style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
-                                  )).toList()),
+                                      ))
+                                  .toList()),
                             ],
                           ),
                         );
@@ -477,7 +530,7 @@ class ItineraryController extends GetxController {
       ),
     );
   }
-  
+
   Color getStatusColor(String status) {
     switch (status) {
       case 'active':
@@ -490,7 +543,7 @@ class ItineraryController extends GetxController {
         return Colors.grey;
     }
   }
-  
+
   String getStatusText(String status) {
     switch (status) {
       case 'active':

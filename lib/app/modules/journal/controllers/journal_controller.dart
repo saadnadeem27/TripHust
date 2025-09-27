@@ -5,7 +5,7 @@ class JournalController extends GetxController {
   // Observable states
   final RxBool isLoading = false.obs;
   final RxString selectedFilter = 'All'.obs;
-  
+
   // Filter categories
   final RxList<String> filterCategories = <String>[
     'All',
@@ -17,32 +17,35 @@ class JournalController extends GetxController {
     'Beach',
     'Mountains'
   ].obs;
-  
+
   // Computed properties
   List<String> get countriesVisited {
     final countries = journalEntries
-        .map((entry) => entry['location']?.toString().split(',').last.trim() ?? '')
+        .map((entry) =>
+            entry['location']?.toString().split(',').last.trim() ?? '')
         .where((country) => country.isNotEmpty)
         .toSet()
         .toList();
     return countries;
   }
-  
+
   List<Map<String, dynamic>> get thisMonthEntries {
     final now = DateTime.now();
     final currentMonth = DateTime(now.year, now.month);
-    
+
     return journalEntries.where((entry) {
       if (entry['date'] == null) return false;
       try {
         final entryDate = DateTime.parse(entry['date']);
-        return entryDate.isAfter(currentMonth.subtract(const Duration(days: 1))) &&
-               entryDate.isBefore(currentMonth.add(const Duration(days: 32)));
+        return entryDate
+                .isAfter(currentMonth.subtract(const Duration(days: 1))) &&
+            entryDate.isBefore(currentMonth.add(const Duration(days: 32)));
       } catch (e) {
         return false;
       }
     }).toList();
   }
+
   // Journal entries
   final RxList<Map<String, dynamic>> journalEntries = <Map<String, dynamic>>[
     {
@@ -230,7 +233,7 @@ class JournalController extends GetxController {
     titleController.text = entry['title'] ?? '';
     locationController.text = entry['location'] ?? '';
     descriptionController.text = entry['description'] ?? '';
-    
+
     Get.snackbar(
       'Edit Entry',
       'Editing ${entry['title']}',
@@ -675,8 +678,6 @@ class JournalController extends GetxController {
     selectedFilter.value = filter;
   }
 
-
-
   void _saveNewEntry() {
     if (titleController.text.isNotEmpty) {
       final newEntry = {
@@ -692,21 +693,22 @@ class JournalController extends GetxController {
         'companions': companions.toList(),
         'tags': ['new'],
         'favorite': false,
-        'imageUrl': 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400',
+        'imageUrl':
+            'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400',
         'category': 'General',
         'content': descriptionController.text,
         'readTime': 3,
         'isFavorite': false,
       };
-      
+
       journalEntries.insert(0, newEntry);
-      
+
       // Clear form
       titleController.clear();
       locationController.clear();
       descriptionController.clear();
       selectedPhotos.clear();
-      
+
       Get.snackbar(
         'Success',
         'New entry added successfully!',

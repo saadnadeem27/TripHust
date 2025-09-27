@@ -41,7 +41,7 @@ class TravelJournalView extends GetView<JournalController> {
               SliverToBoxAdapter(
                 child: _buildFilterChips(),
               ),
-              
+
               SliverToBoxAdapter(
                 child: SizedBox(height: 20),
               ),

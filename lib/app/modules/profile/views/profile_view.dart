@@ -83,11 +83,14 @@ class ProfileView extends GetView<ProfileController> {
                     Obx(() => CircleAvatar(
                           radius: 50,
                           backgroundColor: Colors.grey[800],
-                          backgroundImage: controller.profileImage.value.isNotEmpty
-                              ? CachedNetworkImageProvider(controller.profileImage.value)
-                              : null,
+                          backgroundImage:
+                              controller.profileImage.value.isNotEmpty
+                                  ? CachedNetworkImageProvider(
+                                      controller.profileImage.value)
+                                  : null,
                           child: controller.profileImage.value.isEmpty
-                              ? const Icon(Icons.person, size: 50, color: Colors.white54)
+                              ? const Icon(Icons.person,
+                                  size: 50, color: Colors.white54)
                               : null,
                         )),
                     Positioned(
@@ -132,7 +135,8 @@ class ProfileView extends GetView<ProfileController> {
                 Obx(() => Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.location_on, color: Colors.white54, size: 16),
+                        const Icon(Icons.location_on,
+                            color: Colors.white54, size: 16),
                         const SizedBox(width: 4),
                         Text(
                           controller.userLocation.value,
@@ -203,7 +207,8 @@ class ProfileView extends GetView<ProfileController> {
     );
   }
 
-  Widget _buildStatCard(String label, String value, IconData icon, Gradient gradient) {
+  Widget _buildStatCard(
+      String label, String value, IconData icon, Gradient gradient) {
     return GlassmorphicCard(
       child: Column(
         children: [
@@ -247,7 +252,8 @@ class ProfileView extends GetView<ProfileController> {
             Row(
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
                     gradient: AppTheme.primaryGradient,
                     borderRadius: BorderRadius.circular(20),
@@ -398,7 +404,8 @@ class ProfileView extends GetView<ProfileController> {
     );
   }
 
-  Widget _buildActionCard(String title, IconData icon, Gradient gradient, VoidCallback onTap) {
+  Widget _buildActionCard(
+      String title, IconData icon, Gradient gradient, VoidCallback onTap) {
     return GestureDetector(
       onTap: onTap,
       child: GlassmorphicCard(

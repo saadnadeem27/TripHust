@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import '../../../data/models/destination.dart';
-import '../../../routes/app_routes.dart';
+import '../../booking/views/booking_view.dart';
 
 class DestinationController extends GetxController {
   late Destination destination;
@@ -38,7 +38,7 @@ class DestinationController extends GetxController {
   }
 
   void bookNow() {
-    Get.toNamed(AppRoutes.BOOKING, arguments: destination);
+    Get.to(() => const BookingView(), arguments: destination);
   }
 
   void shareDestination() {

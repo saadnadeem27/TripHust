@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../routes/app_routes.dart';
+import '../../auth/views/login_view.dart';
 
 class OnboardingController extends GetxController {
   final PageController pageController = PageController();
@@ -63,7 +63,7 @@ class OnboardingController extends GetxController {
   }
 
   void goToLogin() {
-    Get.offNamed(AppRoutes.LOGIN);
+    Get.off(() => const LoginView());
   }
 
   @override

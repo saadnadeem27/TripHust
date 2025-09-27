@@ -2,7 +2,11 @@ import 'package:get/get.dart';
 import '../../../data/models/destination.dart';
 import '../../../data/models/travel_package.dart';
 import '../../../data/dummy_data.dart';
-import '../../../routes/app_routes.dart';
+import '../../explore/views/explore_view.dart';
+import '../../journal/views/travel_journal_view.dart';
+import '../../profile/views/profile_view.dart';
+import '../../destination/views/destination_detail_view.dart';
+import '../../itinerary/views/itinerary_builder_view.dart';
 
 class HomeController extends GetxController {
   final RxInt selectedBottomNavIndex = 0.obs;
@@ -37,13 +41,13 @@ class HomeController extends GetxController {
         // Home - already here
         break;
       case 1:
-        Get.toNamed(AppRoutes.EXPLORE);
+        Get.to(() => const ExploreView());
         break;
       case 2:
-        Get.toNamed(AppRoutes.TRAVEL_JOURNAL);
+        Get.to(() => const TravelJournalView());
         break;
       case 3:
-        Get.toNamed(AppRoutes.PROFILE);
+        Get.to(() => const ProfileView());
         break;
     }
   }
@@ -61,30 +65,35 @@ class HomeController extends GetxController {
   }
 
   void goToDestinationDetail(Destination destination) {
-    Get.toNamed(AppRoutes.DESTINATION_DETAIL, arguments: destination);
+    Get.to(() => const DestinationDetailView(), arguments: destination);
   }
 
   void goToSearch() {
-    Get.toNamed(AppRoutes.SEARCH);
+    // Get.to(() => const SearchView()); // Implement when SearchView is available
+    Get.snackbar('Info', 'Search feature coming soon!');
   }
 
   void goToNotifications() {
-    Get.toNamed(AppRoutes.NOTIFICATIONS);
+    // Get.to(() => const NotificationsView()); // Implement when available
+    Get.snackbar('Info', 'Notifications feature coming soon!');
   }
 
   void goToItineraryBuilder() {
-    Get.toNamed(AppRoutes.ITINERARY_BUILDER);
+    Get.to(() => const ItineraryBuilderView());
   }
 
   void goToARGuide() {
-    Get.toNamed(AppRoutes.AR_GUIDE);
+    // Get.to(() => const ARGuideView()); // Implement when available
+    Get.snackbar('Info', 'AR Guide feature coming soon!');
   }
 
   void goToCurrencyConverter() {
-    Get.toNamed(AppRoutes.CURRENCY_CONVERTER);
+    // Get.to(() => const CurrencyConverterView()); // Implement when available
+    Get.snackbar('Info', 'Currency Converter feature coming soon!');
   }
 
   void goToExpenseTracker() {
-    Get.toNamed(AppRoutes.EXPENSE_TRACKER);
+    // Get.to(() => const ExpenseTrackerView()); // Implement when available
+    Get.snackbar('Info', 'Expense Tracker feature coming soon!');
   }
 }

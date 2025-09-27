@@ -75,7 +75,9 @@ class JournalView extends GetView<JournalController> {
                 child: GestureDetector(
                   onTap: controller.toggleViewMode,
                   child: Obx(() => Icon(
-                        controller.isGridView.value ? Icons.list : Icons.grid_view,
+                        controller.isGridView.value
+                            ? Icons.list
+                            : Icons.grid_view,
                         color: Colors.white,
                         size: 24,
                       )),
@@ -166,10 +168,22 @@ class JournalView extends GetView<JournalController> {
             underline: const SizedBox(),
             icon: const Icon(Icons.sort, color: Colors.white, size: 20),
             items: [
-              DropdownMenuItem(value: 'recent', child: Text('Recent', style: GoogleFonts.poppins(color: Colors.white))),
-              DropdownMenuItem(value: 'oldest', child: Text('Oldest', style: GoogleFonts.poppins(color: Colors.white))),
-              DropdownMenuItem(value: 'rating', child: Text('Rating', style: GoogleFonts.poppins(color: Colors.white))),
-              DropdownMenuItem(value: 'location', child: Text('Location', style: GoogleFonts.poppins(color: Colors.white))),
+              DropdownMenuItem(
+                  value: 'recent',
+                  child: Text('Recent',
+                      style: GoogleFonts.poppins(color: Colors.white))),
+              DropdownMenuItem(
+                  value: 'oldest',
+                  child: Text('Oldest',
+                      style: GoogleFonts.poppins(color: Colors.white))),
+              DropdownMenuItem(
+                  value: 'rating',
+                  child: Text('Rating',
+                      style: GoogleFonts.poppins(color: Colors.white))),
+              DropdownMenuItem(
+                  value: 'location',
+                  child: Text('Location',
+                      style: GoogleFonts.poppins(color: Colors.white))),
             ],
             onChanged: (value) {
               if (value != null) controller.setSort(value);
@@ -279,7 +293,8 @@ class JournalView extends GetView<JournalController> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: CachedNetworkImage(
-                  imageUrl: entry['photos'].isNotEmpty ? entry['photos'][0] : '',
+                  imageUrl:
+                      entry['photos'].isNotEmpty ? entry['photos'][0] : '',
                   fit: BoxFit.cover,
                   width: double.infinity,
                   placeholder: (context, url) => Container(
@@ -313,8 +328,11 @@ class JournalView extends GetView<JournalController> {
                         GestureDetector(
                           onTap: () => controller.toggleFavorite(entry['id']),
                           child: Icon(
-                            entry['favorite'] ? Icons.favorite : Icons.favorite_border,
-                            color: entry['favorite'] ? Colors.red : Colors.white54,
+                            entry['favorite']
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            color:
+                                entry['favorite'] ? Colors.red : Colors.white54,
                             size: 20,
                           ),
                         ),
@@ -323,7 +341,8 @@ class JournalView extends GetView<JournalController> {
                     const SizedBox(height: 4),
                     Row(
                       children: [
-                        const Icon(Icons.location_on, color: Colors.white54, size: 12),
+                        const Icon(Icons.location_on,
+                            color: Colors.white54, size: 12),
                         const SizedBox(width: 4),
                         Expanded(
                           child: Text(
@@ -348,7 +367,9 @@ class JournalView extends GetView<JournalController> {
                         const SizedBox(width: 4),
                         ...List.generate(5, (starIndex) {
                           return Icon(
-                            starIndex < entry['rating'] ? Icons.star : Icons.star_border,
+                            starIndex < entry['rating']
+                                ? Icons.star
+                                : Icons.star_border,
                             color: Colors.amber,
                             size: 12,
                           );
@@ -376,7 +397,8 @@ class JournalView extends GetView<JournalController> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: CachedNetworkImage(
-                  imageUrl: entry['photos'].isNotEmpty ? entry['photos'][0] : '',
+                  imageUrl:
+                      entry['photos'].isNotEmpty ? entry['photos'][0] : '',
                   fit: BoxFit.cover,
                   width: 80,
                   height: 80,
@@ -416,7 +438,8 @@ class JournalView extends GetView<JournalController> {
                     const SizedBox(height: 4),
                     Row(
                       children: [
-                        const Icon(Icons.location_on, color: Colors.white54, size: 14),
+                        const Icon(Icons.location_on,
+                            color: Colors.white54, size: 14),
                         const SizedBox(width: 4),
                         Expanded(
                           child: Text(
@@ -448,7 +471,9 @@ class JournalView extends GetView<JournalController> {
                         Row(
                           children: List.generate(5, (starIndex) {
                             return Icon(
-                              starIndex < entry['rating'] ? Icons.star : Icons.star_border,
+                              starIndex < entry['rating']
+                                  ? Icons.star
+                                  : Icons.star_border,
                               color: Colors.amber,
                               size: 14,
                             );
@@ -466,8 +491,11 @@ class JournalView extends GetView<JournalController> {
                         GestureDetector(
                           onTap: () => controller.toggleFavorite(entry['id']),
                           child: Icon(
-                            entry['favorite'] ? Icons.favorite : Icons.favorite_border,
-                            color: entry['favorite'] ? Colors.red : Colors.white54,
+                            entry['favorite']
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            color:
+                                entry['favorite'] ? Colors.red : Colors.white54,
                             size: 20,
                           ),
                         ),

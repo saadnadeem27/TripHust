@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import 'app/routes/app_pages.dart';
-import 'app/routes/app_routes.dart';
 import 'app/core/theme/app_theme.dart';
+import 'app/modules/splash/views/splash_view.dart';
+import 'app/modules/splash/bindings/splash_binding.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,8 +37,8 @@ class TripHustApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.dark,
-      initialRoute: AppRoutes.SPLASH,
-      getPages: AppPages.routes,
+      home: const SplashView(),
+      initialBinding: SplashBinding(),
       defaultTransition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 300),
     );

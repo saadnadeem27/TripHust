@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../auth/views/login_view.dart';
 
 class ProfileController extends GetxController {
   // User profile data
@@ -145,23 +146,28 @@ class ProfileController extends GetxController {
   }
 
   void editProfile() {
-    Get.toNamed('/edit-profile');
+    // Get.to(() => const EditProfileView()); // Implement when available
+    Get.snackbar('Info', 'Edit Profile feature coming soon!');
   }
 
   void viewTravelHistory() {
-    Get.toNamed('/travel-history');
+    // Get.to(() => const TravelHistoryView()); // Implement when available
+    Get.snackbar('Info', 'Travel History feature coming soon!');
   }
 
   void manageBookings() {
-    Get.toNamed('/my-bookings');
+    // Get.to(() => const MyBookingsView()); // Implement when available
+    Get.snackbar('Info', 'My Bookings feature coming soon!');
   }
 
   void viewFavorites() {
-    Get.toNamed('/favorites');
+    // Get.to(() => const FavoritesView()); // Implement when available
+    Get.snackbar('Info', 'Favorites feature coming soon!');
   }
 
   void openSettings() {
-    Get.toNamed('/settings');
+    // Get.to(() => const SettingsView()); // Implement when available
+    Get.snackbar('Info', 'Settings feature coming soon!');
   }
 
   void contactSupport() {
@@ -211,7 +217,7 @@ class ProfileController extends GetxController {
           TextButton(
             onPressed: () {
               Get.back();
-              Get.offAllNamed('/login');
+              Get.offAll(() => const LoginView());
             },
             child: const Text('Logout', style: TextStyle(color: Colors.red)),
           ),

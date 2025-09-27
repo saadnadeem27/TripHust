@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../data/models/destination.dart';
 import '../../../data/dummy_data.dart';
-import '../../../routes/app_routes.dart';
+import '../../destination/views/destination_detail_view.dart';
 
 class ExploreController extends GetxController {
   final searchController = TextEditingController();
@@ -143,7 +143,7 @@ class ExploreController extends GetxController {
   }
 
   void goToDestinationDetail(Destination destination) {
-    Get.toNamed(AppRoutes.DESTINATION_DETAIL, arguments: destination);
+    Get.to(() => const DestinationDetailView(), arguments: destination);
   }
 
   @override

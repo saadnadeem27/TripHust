@@ -15,7 +15,7 @@ class GlassmorphicContainer extends StatelessWidget {
   final LinearGradient? gradient;
 
   const GlassmorphicContainer({
-    Key? key,
+    super.key,
     required this.child,
     this.width,
     this.height,
@@ -27,7 +27,7 @@ class GlassmorphicContainer extends StatelessWidget {
     this.margin,
     this.padding = const EdgeInsets.all(16),
     this.gradient,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +75,7 @@ class GlassmorphicCard extends StatelessWidget {
   final double borderRadius;
 
   const GlassmorphicCard({
-    Key? key,
+    super.key,
     required this.child,
     this.width,
     this.height,
@@ -83,7 +83,7 @@ class GlassmorphicCard extends StatelessWidget {
     this.padding = const EdgeInsets.all(16),
     this.onTap,
     this.borderRadius = 20,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +135,7 @@ class GradientButton extends StatelessWidget {
   final bool isLoading;
 
   const GradientButton({
-    Key? key,
+    super.key,
     required this.text,
     required this.onPressed,
     this.gradient,
@@ -145,7 +145,7 @@ class GradientButton extends StatelessWidget {
     this.textStyle,
     this.icon,
     this.isLoading = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -217,7 +217,7 @@ class AnimatedGradientBackground extends StatefulWidget {
   final Duration duration;
 
   const AnimatedGradientBackground({
-    Key? key,
+    super.key,
     required this.child,
     this.colors = const [
       Color(0xFF0A0A0A),
@@ -225,7 +225,7 @@ class AnimatedGradientBackground extends StatefulWidget {
       Color(0xFF2A2A2A),
     ],
     this.duration = const Duration(seconds: 3),
-  }) : super(key: key);
+  });
 
   @override
   State<AnimatedGradientBackground> createState() =>

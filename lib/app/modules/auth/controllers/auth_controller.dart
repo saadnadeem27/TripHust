@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../routes/app_routes.dart';
+import '../../home/views/home_view.dart';
+import '../views/register_view.dart';
 
 class AuthController extends GetxController {
   final formKey = GlobalKey<FormState>();
@@ -42,7 +43,7 @@ class AuthController extends GetxController {
         colorText: Colors.white,
       );
 
-      Get.offAllNamed(AppRoutes.HOME);
+      Get.offAll(() => const HomeView());
     }
   }
 
@@ -73,7 +74,7 @@ class AuthController extends GetxController {
         colorText: Colors.white,
       );
 
-      Get.offAllNamed(AppRoutes.HOME);
+      Get.offAll(() => const HomeView());
     }
   }
 
@@ -92,7 +93,7 @@ class AuthController extends GetxController {
       colorText: Colors.white,
     );
 
-    Get.offAllNamed(AppRoutes.HOME);
+    Get.offAll(() => const HomeView());
   }
 
   Future<void> loginWithApple() async {
@@ -110,11 +111,11 @@ class AuthController extends GetxController {
       colorText: Colors.white,
     );
 
-    Get.offAllNamed(AppRoutes.HOME);
+    Get.offAll(() => const HomeView());
   }
 
   void goToRegister() {
-    Get.toNamed(AppRoutes.REGISTER);
+    Get.to(() => const RegisterView());
   }
 
   void goToLogin() {

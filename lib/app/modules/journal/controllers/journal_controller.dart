@@ -15,7 +15,8 @@ class JournalController extends GetxController {
         'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=400',
         'https://images.unsplash.com/photo-1555400082-52c0669c5792?w=400',
       ],
-      'description': 'Witnessed one of the most breathtaking sunsets at Tanah Lot Temple. The way the light danced on the water was absolutely magical. This place holds a special place in my heart.',
+      'description':
+          'Witnessed one of the most breathtaking sunsets at Tanah Lot Temple. The way the light danced on the water was absolutely magical. This place holds a special place in my heart.',
       'mood': 'excited',
       'weather': 'Sunny',
       'companions': ['Sarah', 'Mike'],
@@ -32,7 +33,8 @@ class JournalController extends GetxController {
         'https://images.unsplash.com/photo-1543349689-9a4d426bee8e?w=400',
         'https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=400',
       ],
-      'description': 'A romantic evening stroll around the Eiffel Tower. The city lights and the tower\'s golden glow created the perfect atmosphere for unforgettable memories.',
+      'description':
+          'A romantic evening stroll around the Eiffel Tower. The city lights and the tower\'s golden glow created the perfect atmosphere for unforgettable memories.',
       'mood': 'romantic',
       'weather': 'Cool',
       'companions': ['Emma'],
@@ -50,7 +52,8 @@ class JournalController extends GetxController {
         'https://images.unsplash.com/photo-1551524164-687a55dd1126?w=400',
         'https://images.unsplash.com/photo-1464207687429-7505649dae38?w=400',
       ],
-      'description': 'Conquered the challenging trails in the Swiss Alps. The pristine snow, fresh mountain air, and stunning panoramic views made every step worth it.',
+      'description':
+          'Conquered the challenging trails in the Swiss Alps. The pristine snow, fresh mountain air, and stunning panoramic views made every step worth it.',
       'mood': 'adventurous',
       'weather': 'Snowy',
       'companions': ['Solo'],
@@ -76,8 +79,22 @@ class JournalController extends GetxController {
   final RxList<String> tags = <String>[].obs;
 
   // Available options
-  final List<String> moods = ['happy', 'excited', 'romantic', 'adventurous', 'peaceful', 'nostalgic'];
-  final List<String> weatherOptions = ['Sunny', 'Cloudy', 'Rainy', 'Snowy', 'Windy', 'Cool'];
+  final List<String> moods = [
+    'happy',
+    'excited',
+    'romantic',
+    'adventurous',
+    'peaceful',
+    'nostalgic'
+  ];
+  final List<String> weatherOptions = [
+    'Sunny',
+    'Cloudy',
+    'Rainy',
+    'Snowy',
+    'Windy',
+    'Cool'
+  ];
 
   @override
   void onInit() {
@@ -115,10 +132,12 @@ class JournalController extends GetxController {
     // Sort entries
     switch (selectedSort.value) {
       case 'recent':
-        filtered.sort((a, b) => DateTime.parse(b['date']).compareTo(DateTime.parse(a['date'])));
+        filtered.sort((a, b) =>
+            DateTime.parse(b['date']).compareTo(DateTime.parse(a['date'])));
         break;
       case 'oldest':
-        filtered.sort((a, b) => DateTime.parse(a['date']).compareTo(DateTime.parse(b['date'])));
+        filtered.sort((a, b) =>
+            DateTime.parse(a['date']).compareTo(DateTime.parse(b['date'])));
         break;
       case 'rating':
         filtered.sort((a, b) => b['rating'].compareTo(a['rating']));
@@ -148,10 +167,12 @@ class JournalController extends GetxController {
     if (index != -1) {
       journalEntries[index]['favorite'] = !journalEntries[index]['favorite'];
       journalEntries.refresh();
-      
+
       Get.snackbar(
         'Journal',
-        journalEntries[index]['favorite'] ? 'Added to favorites' : 'Removed from favorites',
+        journalEntries[index]['favorite']
+            ? 'Added to favorites'
+            : 'Removed from favorites',
         backgroundColor: Get.theme.primaryColor.withOpacity(0.8),
         colorText: Colors.white,
       );
@@ -159,15 +180,18 @@ class JournalController extends GetxController {
   }
 
   void createNewEntry() {
-    Get.toNamed('/journal/create');
+    // Get.to(() => const CreateJournalEntryView()); // Implement when available
+    Get.snackbar('Info', 'Create Journal Entry feature coming soon!');
   }
 
   void editEntry(String entryId) {
-    Get.toNamed('/journal/edit/$entryId');
+    // Get.to(() => const EditJournalEntryView(), arguments: entryId); // Implement when available
+    Get.snackbar('Info', 'Edit Journal Entry feature coming soon!');
   }
 
   void viewEntry(Map<String, dynamic> entry) {
-    Get.toNamed('/journal/view', arguments: entry);
+    // Get.to(() => const ViewJournalEntryView(), arguments: entry); // Implement when available
+    Get.snackbar('Info', 'View Journal Entry feature coming soon!');
   }
 
   void deleteEntry(String entryId) {
@@ -241,7 +265,8 @@ class JournalController extends GetxController {
             const SizedBox(height: 20),
             ListTile(
               leading: const Icon(Icons.camera_alt, color: Colors.white),
-              title: const Text('Camera', style: TextStyle(color: Colors.white)),
+              title:
+                  const Text('Camera', style: TextStyle(color: Colors.white)),
               onTap: () {
                 Get.back();
                 _addFromCamera();
@@ -249,7 +274,8 @@ class JournalController extends GetxController {
             ),
             ListTile(
               leading: const Icon(Icons.photo_library, color: Colors.white),
-              title: const Text('Gallery', style: TextStyle(color: Colors.white)),
+              title:
+                  const Text('Gallery', style: TextStyle(color: Colors.white)),
               onTap: () {
                 Get.back();
                 _addFromGallery();
@@ -262,12 +288,14 @@ class JournalController extends GetxController {
   }
 
   void _addFromCamera() {
-    selectedPhotos.add('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400');
+    selectedPhotos.add(
+        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400');
     Get.snackbar('Photos', 'Photo added from camera');
   }
 
   void _addFromGallery() {
-    selectedPhotos.add('https://images.unsplash.com/photo-1551524164-687a55dd1126?w=400');
+    selectedPhotos
+        .add('https://images.unsplash.com/photo-1551524164-687a55dd1126?w=400');
     Get.snackbar('Photos', 'Photo added from gallery');
   }
 
@@ -335,7 +363,7 @@ class JournalController extends GetxController {
 
     journalEntries.insert(0, newEntry);
     _clearForm();
-    
+
     Get.back();
     Get.snackbar(
       'Journal',
@@ -375,9 +403,10 @@ class JournalController extends GetxController {
     // Filter entries based on search query
     final filtered = journalEntries.where((entry) {
       return entry['title'].toLowerCase().contains(query.toLowerCase()) ||
-             entry['location'].toLowerCase().contains(query.toLowerCase()) ||
-             entry['description'].toLowerCase().contains(query.toLowerCase()) ||
-             entry['tags'].any((tag) => tag.toLowerCase().contains(query.toLowerCase()));
+          entry['location'].toLowerCase().contains(query.toLowerCase()) ||
+          entry['description'].toLowerCase().contains(query.toLowerCase()) ||
+          entry['tags']
+              .any((tag) => tag.toLowerCase().contains(query.toLowerCase()));
     }).toList();
 
     journalEntries.assignAll(filtered);

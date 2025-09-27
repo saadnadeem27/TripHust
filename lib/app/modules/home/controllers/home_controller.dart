@@ -3,8 +3,11 @@ import '../../../data/models/destination.dart';
 import '../../../data/models/travel_package.dart';
 import '../../../data/dummy_data.dart';
 import '../../explore/views/explore_view.dart';
+import '../../explore/bindings/explore_binding.dart';
 import '../../journal/views/travel_journal_view.dart';
+import '../../journal/bindings/journal_binding.dart';
 import '../../profile/views/profile_view.dart';
+import '../../profile/bindings/profile_binding.dart';
 import '../../destination/views/destination_detail_view.dart';
 import '../../itinerary/views/itinerary_builder_view.dart';
 
@@ -41,13 +44,13 @@ class HomeController extends GetxController {
         // Home - already here
         break;
       case 1:
-        Get.to(() => const ExploreView());
+        Get.to(() => const ExploreView(), binding: ExploreBinding());
         break;
       case 2:
-        Get.to(() => const TravelJournalView());
+        Get.to(() => const TravelJournalView(), binding: JournalBinding());
         break;
       case 3:
-        Get.to(() => const ProfileView());
+        Get.to(() => const ProfileView(), binding: ProfileBinding());
         break;
     }
   }

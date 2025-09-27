@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../home/views/home_view.dart';
+import '../../home/bindings/home_binding.dart';
 import '../views/register_view.dart';
 
 class AuthController extends GetxController {
@@ -43,7 +44,9 @@ class AuthController extends GetxController {
         colorText: Colors.white,
       );
 
-      Get.offAll(() => const HomeView());
+    // Ensure HomeController is registered before navigation
+    HomeBinding().dependencies();
+    Get.offAll(() => const HomeView(), binding: HomeBinding());
     // }
   }
 
@@ -74,7 +77,8 @@ class AuthController extends GetxController {
         colorText: Colors.white,
       );
 
-      Get.offAll(() => const HomeView());
+  HomeBinding().dependencies();
+  Get.offAll(() => const HomeView(), binding: HomeBinding());
     }
   }
 
@@ -93,7 +97,8 @@ class AuthController extends GetxController {
       colorText: Colors.white,
     );
 
-    Get.offAll(() => const HomeView());
+  HomeBinding().dependencies();
+  Get.offAll(() => const HomeView(), binding: HomeBinding());
   }
 
   Future<void> loginWithApple() async {
@@ -111,7 +116,8 @@ class AuthController extends GetxController {
       colorText: Colors.white,
     );
 
-    Get.offAll(() => const HomeView());
+  HomeBinding().dependencies();
+  Get.offAll(() => const HomeView(), binding: HomeBinding());
   }
 
   void goToRegister() {

@@ -11,7 +11,6 @@ class SplashView extends GetView<SplashController> {
   Widget build(BuildContext context) {
     // Initialize controller if not already done
     final controller = Get.find<SplashController>();
-    
 
     return Scaffold(
       body: Container(

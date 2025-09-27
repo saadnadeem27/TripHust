@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../auth/views/login_view.dart';
+import '../../auth/bindings/auth_binding.dart';
 
 class OnboardingController extends GetxController {
   final PageController pageController = PageController();
@@ -63,7 +64,11 @@ class OnboardingController extends GetxController {
   }
 
   void goToLogin() {
-    Get.off(() => const LoginView());
+    // Use binding parameter so AuthBinding runs when the route is pushed
+    Get.off(
+      () => const LoginView(),
+      binding: AuthBinding(),
+    );
   }
 
   @override

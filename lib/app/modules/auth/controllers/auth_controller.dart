@@ -28,7 +28,7 @@ class AuthController extends GetxController {
   }
 
   Future<void> login() async {
-    if (formKey.currentState!.validate()) {
+    // if (formKey.currentState!.validate()) {
       isLoading.value = true;
 
       // Simulate API call
@@ -44,7 +44,7 @@ class AuthController extends GetxController {
       );
 
       Get.offAll(() => const HomeView());
-    }
+    // }
   }
 
   Future<void> register() async {

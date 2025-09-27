@@ -190,7 +190,7 @@ class LoginView extends GetView<AuthController> {
                                 'Forgot Password?',
                                 style: GoogleFonts.poppins(
                                   color: AppTheme.primaryColor,
-                                  fontSize: 14,
+                                  fontSize: 12,
                                 ),
                               ),
                             ),

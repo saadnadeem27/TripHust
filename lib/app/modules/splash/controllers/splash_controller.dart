@@ -56,7 +56,7 @@ class SplashController extends GetxController with GetTickerProviderStateMixin {
       pulseController.stop();
       fadeController.stop();
       print("Navigating to next screen");
-      
+
       try {
         // Put the controller immediately to make it available
         Get.put<OnboardingController>(OnboardingController(), permanent: false);

@@ -5,10 +5,14 @@ import '../../../core/theme/app_theme.dart';
 import '../controllers/splash_controller.dart';
 
 class SplashView extends GetView<SplashController> {
-  const SplashView({Key? key}) : super(key: key);
+  const SplashView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Initialize controller if not already done
+    final controller = Get.find<SplashController>();
+    
+
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -66,14 +70,13 @@ class SplashView extends GetView<SplashController> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         // Enhanced Logo Animation
-                        TweenAnimationBuilder<double>(
-                          duration: const Duration(seconds: 2),
-                          tween: Tween(begin: 0.0, end: 1.0),
-                          builder: (context, value, child) {
+                        AnimatedBuilder(
+                          animation: controller.pulseAnimation,
+                          builder: (context, child) {
                             return Transform.scale(
-                              scale: 0.8 + (value * 0.2),
+                              scale: controller.pulseAnimation.value,
                               child: Opacity(
-                                opacity: value,
+                                opacity: 1.0,
                                 child: Container(
                                   width: 140,
                                   height: 140,
@@ -199,84 +202,6 @@ class SplashView extends GetView<SplashController> {
                     ),
                   ),
 
-                  // Loading Indicator
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 50),
-                    child: Column(
-                      children: [
-                        // Animated Dots Loading
-                        TweenAnimationBuilder<double>(
-                          duration: const Duration(seconds: 2),
-                          tween: Tween(begin: 0.0, end: 1.0),
-                          builder: (context, value, child) {
-                            return Opacity(
-                              opacity: value,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: List.generate(3, (index) {
-                                  return AnimatedContainer(
-                                    duration: Duration(
-                                        milliseconds: 300 + (index * 100)),
-                                    margin: const EdgeInsets.symmetric(
-                                        horizontal: 4),
-                                    width: 12,
-                                    height: 12,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          AppTheme.primaryColor,
-                                          AppTheme.secondaryColor,
-                                        ],
-                                      ),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: AppTheme.primaryColor
-                                              .withOpacity(0.5),
-                                          blurRadius: 8,
-                                          spreadRadius: 2,
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                }),
-                              ),
-                            );
-                          },
-                        ),
-                        const SizedBox(height: 20),
-
-                        // Animated Loading Text
-                        TweenAnimationBuilder<double>(
-                          duration:
-                              const Duration(seconds: 1, milliseconds: 500),
-                          tween: Tween(begin: 0.0, end: 1.0),
-                          builder: (context, value, child) {
-                            return Transform.translate(
-                              offset: Offset(0, 20 * (1 - value)),
-                              child: Opacity(
-                                opacity: value,
-                                child: ShaderMask(
-                                  shaderCallback: (bounds) => AppTheme
-                                      .primaryGradient
-                                      .createShader(bounds),
-                                  child: Text(
-                                    'Preparing your adventure...',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white,
-                                      letterSpacing: 0.5,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
                   // Loading Indicator section (keeping existing code)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 50),
@@ -325,15 +250,13 @@ class SplashView extends GetView<SplashController> {
                         const SizedBox(height: 20),
 
                         // Animated Loading Text
-                        TweenAnimationBuilder<double>(
-                          duration:
-                              const Duration(seconds: 1, milliseconds: 500),
-                          tween: Tween(begin: 0.0, end: 1.0),
-                          builder: (context, value, child) {
+                        AnimatedBuilder(
+                          animation: controller.fadeAnimation,
+                          builder: (context, child) {
                             return Transform.translate(
-                              offset: Offset(0, 20 * (1 - value)),
+                              offset: const Offset(0, 0),
                               child: Opacity(
-                                opacity: value,
+                                opacity: controller.fadeAnimation.value,
                                 child: ShaderMask(
                                   shaderCallback: (bounds) => AppTheme
                                       .primaryGradient

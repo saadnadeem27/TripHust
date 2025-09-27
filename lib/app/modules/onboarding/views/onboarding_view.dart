@@ -170,18 +170,18 @@ class OnboardingView extends GetView<OnboardingController> {
                 child: Column(
                   children: [
                     // Page Indicator
-                    Obx(() => SmoothPageIndicator(
-                          controller: controller.pageController,
-                          count: controller.onboardingData.length,
-                          effect: ExpandingDotsEffect(
-                            activeDotColor: AppTheme.primaryColor,
-                            dotColor: Colors.white.withOpacity(0.3),
-                            dotHeight: 8,
-                            dotWidth: 8,
-                            expansionFactor: 4,
-                            spacing: 8,
-                          ),
-                        )),
+                    SmoothPageIndicator(
+                      controller: controller.pageController,
+                      count: controller.onboardingData.length,
+                      effect: ExpandingDotsEffect(
+                        activeDotColor: AppTheme.primaryColor,
+                        dotColor: Colors.white.withOpacity(0.3),
+                        dotHeight: 8,
+                        dotWidth: 8,
+                        expansionFactor: 4,
+                        spacing: 8,
+                      ),
+                    ),
 
                     const SizedBox(height: 40),
 

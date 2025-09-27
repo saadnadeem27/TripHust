@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '../../onboarding/views/onboarding_view.dart';
-import '../../auth/views/login_view.dart';
-import '../../home/views/home_view.dart';
+import "package:flutter/material.dart";
+import "package:get/get.dart";
+import "package:trip_hust/app/modules/onboarding/views/onboarding_view.dart";
+import "package:trip_hust/app/modules/onboarding/controllers/onboarding_controller.dart";
 
 class SplashController extends GetxController with GetTickerProviderStateMixin {
   late AnimationController pulseController;
@@ -13,14 +12,13 @@ class SplashController extends GetxController with GetTickerProviderStateMixin {
   @override
   void onInit() {
     super.onInit();
-    print('SplashController initialized');
+    print("SplashController initialized");
     _initAnimations();
     _startAnimations();
     _navigateToNext();
   }
 
   void _initAnimations() {
-    // Pulse animation for the logo
     pulseController = AnimationController(
       duration: const Duration(seconds: 2),
       vsync: this,
@@ -34,7 +32,6 @@ class SplashController extends GetxController with GetTickerProviderStateMixin {
       curve: Curves.easeInOut,
     ));
 
-    // Fade animation for loading text
     fadeController = AnimationController(
       duration: const Duration(milliseconds: 800),
       vsync: this,
@@ -50,34 +47,23 @@ class SplashController extends GetxController with GetTickerProviderStateMixin {
   }
 
   void _startAnimations() {
-    // Start pulse animation (repeat)
     pulseController.repeat(reverse: true);
-
-    // Start fade animation (repeat)
     fadeController.repeat(reverse: true);
   }
 
   void _navigateToNext() {
-    print('Starting navigation timer...');
-    Future.delayed(const Duration(seconds: 4), () async {
-      print('Stopping animations...');
+    Future.delayed(const Duration(seconds: 4), () {
       pulseController.stop();
       fadeController.stop();
-
-      print('Navigating to onboarding...');
+      print("Navigating to next screen");
+      
       try {
-        // Try to navigate to onboarding first
+        // Put the controller immediately to make it available
+        Get.put<OnboardingController>(OnboardingController(), permanent: false);
         Get.off(() => const OnboardingView());
+        print("Successfully navigated to onboarding");
       } catch (e) {
-        print('Error navigating to onboarding: $e');
-        // If onboarding fails, try to go to login
-        try {
-          Get.off(() => const LoginView());
-        } catch (e2) {
-          print('Error navigating to login: $e2');
-          // If all fails, go to home
-          Get.off(() => const HomeView());
-        }
+        print("Error navigating: $e");
       }
     });
   }

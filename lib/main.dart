@@ -23,6 +23,9 @@ void main() async {
     ),
   );
 
+  // Initialize splash binding
+  SplashBinding().dependencies();
+
   runApp(const TripHustApp());
 }
 
@@ -38,9 +41,10 @@ class TripHustApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.dark,
       home: const SplashView(),
-      initialBinding: SplashBinding(),
       defaultTransition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 300),
+      // Add route observer to handle navigation
+      navigatorObservers: [GetObserver()],
     );
   }
 }

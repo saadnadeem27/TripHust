@@ -5,7 +5,7 @@ import '../../../core/theme/app_theme.dart';
 import '../../../widgets/glassmorphic_widgets_new.dart';
 
 class PopularPackagesView extends StatelessWidget {
-  const PopularPackagesView({Key? key}) : super(key: key);
+  const PopularPackagesView({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -144,7 +144,8 @@ class ExploreController extends GetxController {
   }
 
   void goToDestinationDetail(Destination destination) {
-    Get.to(() => const DestinationDetailView(), arguments: destination, binding: DestinationBinding());
+    Get.to(() => const DestinationDetailView(),
+        arguments: destination, binding: DestinationBinding());
   }
 
   @override

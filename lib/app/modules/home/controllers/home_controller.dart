@@ -13,6 +13,12 @@ import '../../destination/bindings/destination_binding.dart';
 import '../../itinerary/views/itinerary_builder_view.dart';
 import '../../itinerary/bindings/itinerary_binding.dart';
 import '../../packages/views/popular_packages_view.dart';
+import '../../ar_guide/views/ar_guide_view.dart';
+import '../../ar_guide/bindings/ar_guide_binding.dart';
+import '../../currency_converter/views/currency_converter_view.dart';
+import '../../currency_converter/bindings/currency_converter_binding.dart';
+import '../../expense_tracker/views/expense_tracker_view.dart';
+import '../../expense_tracker/bindings/expense_tracker_binding.dart';
 
 class HomeController extends GetxController {
   final RxInt selectedBottomNavIndex = 0.obs;
@@ -70,7 +76,8 @@ class HomeController extends GetxController {
   }
 
   void goToDestinationDetail(Destination destination) {
-    Get.to(() => const DestinationDetailView(), arguments: destination, binding: DestinationBinding());
+    Get.to(() => const DestinationDetailView(),
+        arguments: destination, binding: DestinationBinding());
   }
 
   void goToSearch() {
@@ -88,18 +95,15 @@ class HomeController extends GetxController {
   }
 
   void goToARGuide() {
-    // Get.to(() => const ARGuideView()); // Implement when available
-    Get.snackbar('Info', 'AR Guide feature coming soon!');
+    Get.to(() => const ARGuideView(), binding: ARGuideBinding());
   }
 
   void goToCurrencyConverter() {
-    // Get.to(() => const CurrencyConverterView()); // Implement when available
-    Get.snackbar('Info', 'Currency Converter feature coming soon!');
+    Get.to(() => const CurrencyConverterView(), binding: CurrencyConverterBinding());
   }
 
   void goToExpenseTracker() {
-    // Get.to(() => const ExpenseTrackerView()); // Implement when available
-    Get.snackbar('Info', 'Expense Tracker feature coming soon!');
+    Get.to(() => const ExpenseTrackerView(), binding: ExpenseTrackerBinding());
   }
 
   void goToPopularPackages() {

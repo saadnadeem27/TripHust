@@ -2,6 +2,47 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class JournalController extends GetxController {
+  // Observable states
+  final RxBool isLoading = false.obs;
+  final RxString selectedFilter = 'All'.obs;
+  
+  // Filter categories
+  final RxList<String> filterCategories = <String>[
+    'All',
+    'Adventure',
+    'Culture',
+    'Food',
+    'Nature',
+    'City',
+    'Beach',
+    'Mountains'
+  ].obs;
+  
+  // Computed properties
+  List<String> get countriesVisited {
+    final countries = journalEntries
+        .map((entry) => entry['location']?.toString().split(',').last.trim() ?? '')
+        .where((country) => country.isNotEmpty)
+        .toSet()
+        .toList();
+    return countries;
+  }
+  
+  List<Map<String, dynamic>> get thisMonthEntries {
+    final now = DateTime.now();
+    final currentMonth = DateTime(now.year, now.month);
+    
+    return journalEntries.where((entry) {
+      if (entry['date'] == null) return false;
+      try {
+        final entryDate = DateTime.parse(entry['date']);
+        return entryDate.isAfter(currentMonth.subtract(const Duration(days: 1))) &&
+               entryDate.isBefore(currentMonth.add(const Duration(days: 32)));
+      } catch (e) {
+        return false;
+      }
+    }).toList();
+  }
   // Journal entries
   final RxList<Map<String, dynamic>> journalEntries = <Map<String, dynamic>>[
     {
@@ -63,7 +104,6 @@ class JournalController extends GetxController {
   ].obs;
 
   // Current filter and sort options
-  final RxString selectedFilter = 'all'.obs;
   final RxString selectedSort = 'recent'.obs;
   final RxBool isGridView = false.obs;
 
@@ -162,10 +202,11 @@ class JournalController extends GetxController {
     isGridView.toggle();
   }
 
-  void toggleFavorite(String entryId) {
-    final index = journalEntries.indexWhere((entry) => entry['id'] == entryId);
+  void toggleFavorite(Map<String, dynamic> entry) {
+    final index = journalEntries.indexWhere((e) => e['id'] == entry['id']);
     if (index != -1) {
-      journalEntries[index]['favorite'] = !journalEntries[index]['favorite'];
+      journalEntries[index]['favorite'] = !(entry['favorite'] ?? false);
+      journalEntries[index]['isFavorite'] = journalEntries[index]['favorite'];
       journalEntries.refresh();
 
       Get.snackbar(
@@ -184,9 +225,17 @@ class JournalController extends GetxController {
     Get.snackbar('Info', 'Create Journal Entry feature coming soon!');
   }
 
-  void editEntry(String entryId) {
-    // Get.to(() => const EditJournalEntryView(), arguments: entryId); // Implement when available
-    Get.snackbar('Info', 'Edit Journal Entry feature coming soon!');
+  void editEntry(Map<String, dynamic> entry) {
+    // Populate form controllers with entry data
+    titleController.text = entry['title'] ?? '';
+    locationController.text = entry['location'] ?? '';
+    descriptionController.text = entry['description'] ?? '';
+    
+    Get.snackbar(
+      'Edit Entry',
+      'Editing ${entry['title']}',
+      snackPosition: SnackPosition.BOTTOM,
+    );
   }
 
   void viewEntry(Map<String, dynamic> entry) {
@@ -194,7 +243,7 @@ class JournalController extends GetxController {
     Get.snackbar('Info', 'View Journal Entry feature coming soon!');
   }
 
-  void deleteEntry(String entryId) {
+  void deleteEntry(Map<String, dynamic> entry) {
     Get.dialog(
       AlertDialog(
         backgroundColor: const Color(0xFF1A1A2E),
@@ -202,9 +251,9 @@ class JournalController extends GetxController {
           'Delete Entry',
           style: TextStyle(color: Colors.white),
         ),
-        content: const Text(
-          'Are you sure you want to delete this journal entry?',
-          style: TextStyle(color: Colors.white70),
+        content: Text(
+          'Are you sure you want to delete "${entry['title']}"?',
+          style: const TextStyle(color: Colors.white70),
         ),
         actions: [
           TextButton(
@@ -213,7 +262,7 @@ class JournalController extends GetxController {
           ),
           TextButton(
             onPressed: () {
-              journalEntries.removeWhere((entry) => entry['id'] == entryId);
+              journalEntries.removeWhere((e) => e['id'] == entry['id']);
               Get.back();
               Get.snackbar(
                 'Journal',
@@ -447,6 +496,222 @@ class JournalController extends GetxController {
         return Colors.purple;
       default:
         return Colors.yellow;
+    }
+  }
+
+  // New methods for the enhanced UI
+  void openSearchDialog() {
+    Get.dialog(
+      AlertDialog(
+        backgroundColor: const Color(0xFF1A1A2E),
+        title: const Text(
+          'Search Entries',
+          style: TextStyle(color: Colors.white),
+        ),
+        content: TextField(
+          decoration: const InputDecoration(
+            hintText: 'Search by title, location, or tags...',
+            hintStyle: TextStyle(color: Colors.white70),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.white70),
+            ),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.white),
+            ),
+          ),
+          style: const TextStyle(color: Colors.white),
+          onChanged: (query) {
+            // Implement search logic
+          },
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Get.back(),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Get.back(),
+            child: const Text('Search'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void addNewEntry() {
+    Get.dialog(
+      Dialog(
+        backgroundColor: Colors.transparent,
+        child: Container(
+          width: Get.width * 0.9,
+          height: Get.height * 0.8,
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xFF0A0A0A),
+                Color(0xFF1A1A2E),
+                Color(0xFF16213E),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: Colors.white.withOpacity(0.2),
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  const Text(
+                    'New Journal Entry',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    onPressed: () => Get.back(),
+                    icon: const Icon(Icons.close, color: Colors.white),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      TextField(
+                        controller: titleController,
+                        decoration: const InputDecoration(
+                          labelText: 'Title',
+                          labelStyle: TextStyle(color: Colors.white70),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white30),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                        ),
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      const SizedBox(height: 16),
+                      TextField(
+                        controller: locationController,
+                        decoration: const InputDecoration(
+                          labelText: 'Location',
+                          labelStyle: TextStyle(color: Colors.white70),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white30),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                        ),
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      const SizedBox(height: 16),
+                      TextField(
+                        controller: descriptionController,
+                        maxLines: 4,
+                        decoration: const InputDecoration(
+                          labelText: 'Description',
+                          labelStyle: TextStyle(color: Colors.white70),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white30),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                        ),
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () => Get.back(),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white.withOpacity(0.1),
+                        foregroundColor: Colors.white,
+                      ),
+                      child: const Text('Cancel'),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        _saveNewEntry();
+                        Get.back();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        foregroundColor: Colors.white,
+                      ),
+                      child: const Text('Save'),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void selectFilter(String filter) {
+    selectedFilter.value = filter;
+  }
+
+
+
+  void _saveNewEntry() {
+    if (titleController.text.isNotEmpty) {
+      final newEntry = {
+        'id': DateTime.now().millisecondsSinceEpoch.toString(),
+        'title': titleController.text,
+        'location': locationController.text,
+        'date': DateTime.now().toString().split(' ')[0],
+        'rating': selectedRating.value,
+        'photos': selectedPhotos.toList(),
+        'description': descriptionController.text,
+        'mood': selectedMood.value,
+        'weather': selectedWeather.value,
+        'companions': companions.toList(),
+        'tags': ['new'],
+        'favorite': false,
+        'imageUrl': 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400',
+        'category': 'General',
+        'content': descriptionController.text,
+        'readTime': 3,
+        'isFavorite': false,
+      };
+      
+      journalEntries.insert(0, newEntry);
+      
+      // Clear form
+      titleController.clear();
+      locationController.clear();
+      descriptionController.clear();
+      selectedPhotos.clear();
+      
+      Get.snackbar(
+        'Success',
+        'New entry added successfully!',
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   }
 }
